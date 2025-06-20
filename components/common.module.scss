@@ -1,0 +1,74 @@
+@import '../styles/_variables.scss';
+
+.eventTitle {
+  align-self: center;
+  line-height: 120%;
+  margin-bottom: 36px;
+  font-size: 50px;
+  font-family: Rhymes, serif;
+  font-weight: 400;
+  @include container900px;
+
+  @media (max-width: $breakpoint-md-max) {
+    font-size: 42px;
+  }
+  @media (max-width: $breakpoint-xs-max) {
+    font-size: 23px;
+  }
+
+
+  .title {
+    font-style: italic;
+    font-weight: 500;
+  }
+
+  .date {
+    @include labelThin;
+    position: relative;
+    display:inline-flex;
+    flex-direction: column;
+    min-width: 170px; // galleryName width
+    bottom: 20px;
+    line-height: 1em;
+
+    span {
+      line-height: 1.15em;
+    }
+    @media (max-width: $breakpoint-md-max) {
+      bottom: 17px;
+    }
+
+    @media (max-width: $breakpoint-xs-max) {
+      flex-direction: row;
+      flex-wrap: wrap;
+      bottom: 0;
+      column-gap: 8px;
+    }
+
+    @media (max-width: $breakpoint-md-max) {
+      font-size: 14px;
+    }
+  }
+}
+
+.opacity {
+  opacity: 0.5;
+}
+
+.gradient {
+  position: relative;
+  height: 1em;
+  display: inline-block;
+  overflow: visible;
+}
+
+.gradient:before{
+  position: absolute;
+  z-index: 1;
+  content: '';
+  height: 1.2em;
+  top: 0;
+  right: 0;
+  width: 200px;
+  background: linear-gradient(0.25turn, rgba(255, 255, 255, 0) 0%, #FFF 90%);
+}

@@ -1,0 +1,15 @@
+@import '_variables.scss';
+
+
+.eventYear {
+ h1 {
+   @include labelSmall;
+   margin-bottom: 12px;
+ }
+  margin-bottom: 84px;
+}
+
+.eventContainer{
+  @include gridCol4-1;
+  @include container1200px;
+}

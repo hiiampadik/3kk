@@ -1,0 +1,52 @@
+@import "../../styles/_variables.scss";
+
+
+.swiperWrapper {
+  height: 100%;
+  width: 100vw;
+
+
+  img {
+    width: auto;
+    height: 100%;
+  }
+  .swiperSlide {
+    width: auto !important;
+  }
+
+}
+
+.overlayGallery{
+  width: 100%;
+  max-height: calc(100% - 100px);
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  box-sizing: border-box;
+  position: relative;
+  flex: 1 1 auto;
+
+  img {
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
+  }
+  .prev, .next{
+    height: 100%;
+    width: 50%;
+    position: absolute;
+    top: 0;
+    background: none;
+    border: 0;
+    z-index: 1000;
+    padding: 0;
+  }
+  .prev{
+    left: 0;
+    cursor: w-resize;
+  }
+  .next {
+    right: 0;
+    cursor: e-resize;
+  }
+}

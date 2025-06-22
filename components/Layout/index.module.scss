@@ -1,1 +1,24 @@
 @import '../../styles/variables';
+
+.content {
+  margin-top: 40px
+}
+
+.navigationContainer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 10px;
+  height: 40px;
+  display: flex;
+  gap: 10px;
+  border-bottom: 1px black solid;
+  background: white;
+}
+
+.footerContainer {
+  margin-top: auto;
+  border-top: 1px black solid;
+  padding: 10px;
+}

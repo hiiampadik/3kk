@@ -5,7 +5,7 @@ import {usePathname} from 'next/navigation';
 import Overlay from '@/components/Overlay';
 import {useDisableScroll} from '@/components/utils/useDisableScroll';
 import Link from 'next/link';
-
+import styles from './index.module.scss';
 
 const Navigation: FunctionComponent = () => {
     const router = useRouter();
@@ -25,34 +25,43 @@ const Navigation: FunctionComponent = () => {
 
     return (
         <>
-            <Link
-                href={"/"}
-                prefetch={false}
-            >
-                Homepage
-            </Link>
-            <Link
-                href={"/about"}
-                className={currentPath?.startsWith('/about') ? '' : ''}
-                prefetch={false}
-            >
-                About
-            </Link>
-            <Link
-                href={"/projects"}
-                className={currentPath?.startsWith('/projects') ? '' : ''}
-                prefetch={false
-            }>
-                Projects
-            </Link>
+            <div className={styles.navigationContainer}>
+                <Link
+                    href={"/"}
+                >
+                    3+KK
+                </Link>
+                <Link
+                    href={"/projects"}
+                    className={currentPath?.startsWith('/projects') ? '' : ''}
+                    prefetch={false
+                    }>
+                    Projects
+                </Link>
+                <Link
+                    href={"/about"}
+                    className={currentPath?.startsWith('/about') ? '' : ''}
+                    prefetch={false}
+                >
+                    About
+                </Link>
+                <Link
+                    href={"/contact"}
+                    className={currentPath?.startsWith('/contact') ? '' : ''}
+                    prefetch={false}
+                >
+                    Contact
+                </Link>
 
-            <Link
-                href={router.asPath}
-                locale={router.locale === "cs" ? "en" : "cs"}
-                prefetch={false}
-            >
-                {router.locale === "cs" ? "EN" : "CZ"}
-            </Link>
+
+                <Link
+                    href={router.asPath}
+                    locale={router.locale === "cs" ? "en" : "cs"}
+                    prefetch={false}
+                >
+                    {router.locale === "cs" ? "EN" : "CZ"}
+                </Link>
+            </div>
 
             <Overlay handleClose={() => setShowOverlay(null)} isOpen={showOverlay !== null}>
                 {showOverlay === 'menu' &&

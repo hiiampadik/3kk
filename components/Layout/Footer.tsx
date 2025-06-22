@@ -1,11 +1,12 @@
 import React, {FunctionComponent} from 'react';
 import {useLocale} from '@/components/utils/useLocale';
+import styles from './index.module.scss'
 
 const Footer: FunctionComponent = () => {
     const locale = useLocale()
 
     return (
-        <div>
+        <div className={styles.footerContainer}>
             {locale === 'en' ?
                 <p>En footer</p>
                 :

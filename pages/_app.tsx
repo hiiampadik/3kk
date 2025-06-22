@@ -6,7 +6,6 @@ import Script from 'next/script';
 import * as gtag from "../lib/gtag";
 import {IntlErrorCode, NextIntlClientProvider} from 'next-intl';
 
-
 const MyApp: FunctionComponent<AppProps> = ({ Component, router, pageProps }) => {
 
     useEffect(() => {
@@ -19,7 +18,8 @@ const MyApp: FunctionComponent<AppProps> = ({ Component, router, pageProps }) =>
         };
     }, [router.events]);
 
-    const googleAnalyticsId = 'G-PZ09J30FR7'
+    // TODO
+    const googleAnalyticsId = 'G-'
 
     return (
         <>

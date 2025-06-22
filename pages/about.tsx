@@ -1,24 +1,17 @@
 import Layout from '../components/Layout';
-import styles from '../styles/about.module.scss'
-import {useRouter} from 'next/router';
-import BlockContent from '@/components/Sanity/BlockContent';
 import React from 'react';
-import GallerySwiper from '@/components/Sanity/GallerySwiper';
-import Figure from '@/components/Sanity/Figure';
-import {About as AboutClass} from '@/api/classes'
+import {About as AboutClass, QUERY_ABOUT} from '@/api/about'
 import {sanityFetch} from '@/sanity/client';
-import {QUERY_ABOUT} from '@/sanity/queries';
 import {GetStaticPropsContext} from 'next';
-import {useTranslations} from 'next-intl';
+import {useLocale} from '@/components/utils/useLocale';
 
 export default function About({data}: any) {
-    const router = useRouter();
-    const about = AboutClass.fromPayload(data, router.locale ?? 'cs');
-    const t = useTranslations('About');
+    const locale = useLocale();
+    const about = AboutClass.fromPayload(data, locale);
 
     return (
-        <Layout loading={about === null} title={'About'}>
-            ABOUT
+        <Layout>
+            About {about.Id}
         </Layout>
     );
 }

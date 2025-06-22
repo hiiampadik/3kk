@@ -1,6 +1,6 @@
 import { PortableText, PortableTextComponents } from '@portabletext/react';
 import Figure from './Figure';
-import styles from './Blocks.module.scss';
+import styles from './Block.module.scss';
 import React, { FunctionComponent, ReactNode } from 'react';
 import Link from 'next/link';
 

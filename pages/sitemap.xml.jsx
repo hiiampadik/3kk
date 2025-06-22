@@ -1,5 +1,6 @@
-import {QUERY_ALL_SLUGS} from "../sanity/queries.ts";
+import {QUERY_ALL_SLUGS} from "../api/queries.ts";
 import client from "../sanity/client.ts";
+import {WEBSITE_URL} from "../components/Layout/index.js";
 
 const SiteMap = function () {
     return <div>loading</div>;
@@ -13,7 +14,7 @@ function createXmlEntry(url) {
 }
 
 export async function getServerSideProps({ res }) {
-    const baseUrl = 'https://www.karpuchina.gallery/';
+    const baseUrl = WEBSITE_URL;
     const urls = await client.fetch(QUERY_ALL_SLUGS);
     const slugs = []
 

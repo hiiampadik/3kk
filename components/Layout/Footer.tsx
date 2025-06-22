@@ -1,12 +1,12 @@
 import React, {FunctionComponent} from 'react';
-import {useRouter} from 'next/router';
+import {useLocale} from '@/components/utils/useLocale';
 
 const Footer: FunctionComponent = () => {
-    const router = useRouter();
+    const locale = useLocale()
 
     return (
         <div>
-            {router.locale === 'en' ?
+            {locale === 'en' ?
                 <p>En footer</p>
                 :
                 <p>Cs footer</p>

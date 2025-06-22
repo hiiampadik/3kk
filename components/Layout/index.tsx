@@ -5,6 +5,11 @@ import Footer from '@/components/Layout/Footer';
 import styles from './index.module.scss'
 import {classNames} from '@/components/utils/classNames';
 import {useRouter} from 'next/router';
+import {useLocale} from '@/components/utils/useLocale';
+
+export const WEBSITE_NAME = '3+KK'
+export const WEBSITE_DESCRIPTION = "We are a progressive theatre"
+export const WEBSITE_URL = 'https://www.tripluskk.cz/'
 
 interface LayoutProps {
     readonly title?: string
@@ -23,46 +28,44 @@ const Layout: FunctionComponent<PropsWithChildren<LayoutProps>> = (
         image
     }) => {
 
-    const pageTitle = title ? title + ' | 3+KK' : '3+KK'
-    const router = useRouter();  // Get current locale from router
+    const pageTitle = title ? title + ` | ${WEBSITE_NAME}` : WEBSITE_NAME
+    const router = useRouter()
+    const locale = useLocale()
     const getLocale = () => {
-        switch (router.locale) {
+        switch (locale) {
             case 'en':
                 return 'en_US';  // English locale
             case 'cs':
                 return 'cs_CZ';  // Czech locale
-            default:
-                return 'en_US';  // Default to English
         }
     };
 
-    const baseURL = 'https://www.karpuchina.gallery/'
-    const currentUrl = baseURL + router.asPath;
+    const currentUrl = WEBSITE_URL + router.asPath;
 
     const jsonLd = {
         '@context': 'https://schema.org',
         "@graph":[
             {
                 "@type":"Organization",
-                "@id":"https://karpuchina.gallery#organization",
-                "name":"Karpuchina Gallery",
-                "url":"https://karpuchina.gallery",
-                "sameAs":["https://www.facebook.com/whitepearlgallery/","https://www.instagram.com/whitepearlgallery/"]
+                "@id": WEBSITE_URL + "#organization",
+                "name":WEBSITE_NAME,
+                "url": WEBSITE_URL,
+                "sameAs":["https://www.facebook.com/3pluskk","https://www.instagram.com/3pluskk"]
             },
             {
                 "@type":"WebSite",
-                "@id":"https://www.karpuchina.gallery#website",
-                "url":"https://www.karpuchina.gallery",
-                "name":"Karpuchina Gallery",
-                "publisher":{"@id":"https://karpuchina.gallery#organization"},
-                'description': "We are a progressive gallery of contemporary art."
+                "@id": WEBSITE_URL + "#website",
+                "url":WEBSITE_URL,
+                "name":WEBSITE_NAME,
+                "publisher":{"@id": WEBSITE_URL + "#organization"},
+                'description': WEBSITE_DESCRIPTION
             },
             {
                 '@type': 'WebPage',
                 "@id": currentUrl + "#website",
                 "url": currentUrl,
                 'name': pageTitle,
-                'description': "We are a progressive gallery of contemporary art."
+                'description': WEBSITE_DESCRIPTION
             }
         ]
     }
@@ -74,16 +77,16 @@ const Layout: FunctionComponent<PropsWithChildren<LayoutProps>> = (
 
                 <meta name="viewport" content="width=device-width, initial-scale=1"/>
                 <meta name="keywords"
-                      content="Karpuchina Gallery, contemporary art, art gallery Prague, modern art exhibitions, contemporary photography, art events Prague, Karpuchina exhibitions, art space Prague, současné umění, galerie Praha, moderní umění, výstavy Praha, současní umělci, umělecká scéna Praha, současná malba, moderní sochařství, současná fotografie, umělecké akce Praha, galerie současného umění"/>
-                <meta name="description" content="We are a progressive gallery of contemporary art."/>
+                      content="TODO"/>
+                <meta name="description" content={WEBSITE_DESCRIPTION}/>
                 <meta name="robots" content="index, follow"/>
                 <meta charSet="utf-8"/>
 
 
-                <meta property="og:site_name" content="Karpuchina Gallery"/>
+                <meta property="og:site_name" content={WEBSITE_NAME}/>
                 <meta property="og:locale" content={getLocale()}/>
-                <meta property="og:title" content={title ?? "Karpuchina Gallery"}/>
-                <meta property="og:description" content="We are a progressive gallery of contemporary art."/>
+                <meta property="og:title" content={title ?? WEBSITE_NAME}/>
+                <meta property="og:description" content={WEBSITE_DESCRIPTION}/>
                 <meta property="og:type" content="website"/>
                 <meta property="og:url" content={currentUrl}/>
 
@@ -101,12 +104,12 @@ const Layout: FunctionComponent<PropsWithChildren<LayoutProps>> = (
                     </>
                     :
                     <>
-                        <meta property="og:image" content={baseURL + 'favicon/web-app-manifest-512x512.png'}/>
+                        <meta property="og:image" content={WEBSITE_URL + 'favicon/web-app-manifest-512x512.png'}/>
                         <meta property="og:image:type" content="image/png"/>
                         <meta property="og:image:width" content={'512'}/>
                         <meta property="og:image:height" content={'512'}/>
 
-                        <meta name="twitter:image" content={baseURL + 'favicon/web-app-manifest-512x512.png'}/>
+                        <meta name="twitter:image" content={WEBSITE_URL + 'favicon/web-app-manifest-512x512.png'}/>
                         <meta name="twitter:image:type" content="image/png"/>
                         <meta name="twitter:image:width" content={'512'}/>
                         <meta name="twitter:image:height" content={'512'}/>
@@ -115,14 +118,12 @@ const Layout: FunctionComponent<PropsWithChildren<LayoutProps>> = (
                 }
 
                 <meta name="twitter:card" content="summary_large_image"/>
-                <meta name="twitter:title" content={title ? title + " | Karpuchina Gallery" : "Karpuchina Gallery"}/>
-                <meta name="twitter:description" content="We are a progressive gallery of contemporary art."/>
+                <meta name="twitter:title" content={title ? title + ` | ${WEBSITE_NAME}` : WEBSITE_NAME}/>
+                <meta name="twitter:description" content={WEBSITE_DESCRIPTION}/>
 
-                <link rel="icon" type="image/png" href="/favicon/favicon-96x96.png" sizes="96x96"/>
-                <link rel="icon" type="image/svg+xml" href="/favicon/favicon.svg"/>
-                <link rel="icon" href="/favicon/favicon.ico"/>
-                <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png"/>
-                <meta name="apple-mobile-web-app-title" content="Karpuchina Gallery"/>
+                {/*TODO Icons */}
+
+                <meta name="apple-mobile-web-app-title" content={WEBSITE_NAME}/>
             </Head>
 
             <script

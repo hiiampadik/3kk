@@ -5,7 +5,7 @@
   -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
 
-  font-family: NHG, -apple-system, 'Helvetica Neue', 'Arial', sans-serif;
+  font-family: -apple-system, 'Helvetica Neue', 'Arial', sans-serif;
 
   font-size: 16px;
   text-rendering: optimizeLegibility;
@@ -59,7 +59,6 @@ a {
 h1,
 h2,
 h3 {
-  font-size: 1em;
   font-family: inherit;
   font-style: inherit;
   font-weight: inherit;
@@ -69,8 +68,6 @@ h3 {
 
 p {
   margin: 0;
-  font-size: 20px;
-  font-family: Rhymes, serif;
 }
 
 figure {

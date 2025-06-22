@@ -1,6 +1,6 @@
 import {QUERY_ALL_SLUGS} from "../api/queries.ts";
 import client from "../sanity/client.ts";
-import {WEBSITE_URL} from "../components/Layout/index.js";
+import {WEBSITE_URL} from "../components/Layout/index.tsx";
 
 const SiteMap = function () {
     return <div>loading</div>;

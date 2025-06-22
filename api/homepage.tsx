@@ -1,16 +1,54 @@
-import {defineQuery} from 'next-sanity';
+import {groq} from 'next-sanity';
+import {
+    internalGroqTypeReferenceTo, LocalizedRichParagraph,
+    LocalizedString,
+    SanityImageCrop,
+    SanityImageHotspot,
+    Slug
+} from '@/api/sanity.types';
 
-export const QUERY_HOMEPAGE = defineQuery(`*[_type == 'homepage'][0]{...}`)
-
-
-export class Homepage {
-    public constructor(
-        public readonly Id: string,
-    ) {}
-
-    public static fromPayload(payload: any, locale: string): Homepage {
-        return new Homepage(
-            payload._id,
-        );
+export const QUERY_HOMEPAGE = groq`*[_type == 'homepage'][0]{
+...,
+program[]{
+    ...,
+    project->{
+        title,
+        slug,
+        description,
     }
+  }
+}`
+
+export type Homepage = {
+    _id: string
+    _type: 'homepage'
+    _createdAt: string
+    _updatedAt: string
+    _rev: string
+    cover: {
+        asset?: {
+            _ref: string
+            _type: 'reference'
+            _weak?: boolean
+            [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
+        }
+        media?: unknown
+        hotspot?: SanityImageHotspot
+        crop?: SanityImageCrop
+        _type: 'image'
+    }
+    program?: Array<{
+        project: {
+            title: LocalizedString
+            slug: Slug
+            description: LocalizedRichParagraph
+        }
+        date: string
+        location: string
+        ticket?: string
+        facebook?: string
+        tag?: LocalizedString
+        _type: 'event'
+        _key: string
+    }>
 }

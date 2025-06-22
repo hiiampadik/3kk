@@ -2,16 +2,15 @@ import React from "react";
 import {GetStaticPropsContext} from 'next';
 import {sanityFetch} from '@/sanity/client';
 import Layout from '@/components/Layout';
-import {QUERY_ALL_PROJECTS_SLUGS, QUERY_PROJECT_DETAILS} from '@/api/projects';
+import {Project as ProjectSanity} from '../../api/sanity.types'
+import {QUERY_ALL_PROJECTS_SLUGS, QUERY_PROJECT_DETAILS} from '@/api/queries';
 
-export default function Project({data}: any) {
-
-
+export default function Project({data}: {data: ProjectSanity}) {
     return (
         <Layout
             title={'todo'}
         >
-            TODO
+            {data.status}
         </Layout>
     )
 }
@@ -32,10 +31,10 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps(context: GetStaticPropsContext) {
-    const data = await sanityFetch({query: QUERY_PROJECT_DETAILS, params: {slug: context.params?.slug}, useCdn: false});
+    const data: {project: ProjectSanity} = await sanityFetch({query: QUERY_PROJECT_DETAILS, params: {slug: context.params?.slug}, useCdn: false});
     return {
         props: {
-            data: data,
+            data: data.project,
             messages: (await import(`../../public/locales/${context.locale}.json`)).default,
         },
         revalidate: 172800, // two days

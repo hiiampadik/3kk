@@ -2,22 +2,19 @@ import React from 'react';
 import Layout from '@/components/Layout';
 import {GetStaticPropsContext} from 'next';
 import {sanityFetch} from '@/sanity/client';
-import {Project, QUERY_ALL_PROJECTS} from '@/api/projects';
 import Link from 'next/link';
-import {useLocale} from '@/components/utils/useLocale';
+import {Project as ProjectSanity} from '../api/sanity.types'
+import {QUERY_ALL_PROJECTS} from '@/api/queries';
 
-
-export default function Projects({data}: any) {
-    const locale = useLocale();
-    const projects: Project[] = data.map((value: any) => Project.fromPayload(value, locale))
+export default function Projects({data}: {data: ProjectSanity[]}) {
 
     return (
         <Layout>
-            {projects.map(project => (
+            {data.map(project => (
                 <Link href={`/projects/[slug]`}
-                      as={`/projects/${project.Slug}`}
-                      key={project.Slug}>
-                    Project - {project.Title}
+                      as={`/projects/${project.slug.current}`}
+                      key={project._id}>
+                    Project - {project.title.cs}
                 </Link>
             ))}
         </Layout>
@@ -25,7 +22,7 @@ export default function Projects({data}: any) {
 }
 
 export async function getStaticProps(context: GetStaticPropsContext) {
-    const data = await sanityFetch({query: QUERY_ALL_PROJECTS, useCdn: false});
+    const data: ProjectSanity[] = await sanityFetch({query: QUERY_ALL_PROJECTS, useCdn: false});
 
     return {
         props: {

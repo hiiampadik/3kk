@@ -5,11 +5,12 @@ import {getImageDimensions} from '@sanity/asset-utils';
 import {classNames} from '@/components/utils/classNames';
 import client from '@/sanity/client';
 import styles from './Figure.module.scss'
+import {Image} from '@/api/image';
 
 const builder = imageUrlBuilder(client);
 
 interface FigureProps {
-    readonly image: {_type: 'image', asset: {_ref: string, _type: "reference"}};
+    readonly image: Image;
     readonly alt?: string | null
     readonly className?: string
     readonly onClick?: () => void
@@ -32,15 +33,18 @@ const Figure: FunctionComponent<FigureProps> = (
     }) => {
 
     const [loaded, setLoaded] = useState(false)
-    const [ref, setRef] = useState(image.asset._ref)
+    const [ref, setRef] = useState(image.image.asset?._ref)
 
     const [height, width] = useMemo(() => {
-        if (image.asset._ref !== ref){
-            setRef(image.asset._ref)
+        if (image.image.asset?._ref !== ref){
+            setRef(image.image.asset?._ref)
             setLoaded(false)
         }
-        const dimensions = getImageDimensions(image)
-        return [dimensions.height, dimensions.width]
+        if (image.image.asset) {
+            const dimensions = getImageDimensions(image.image.asset)
+            return [dimensions.height, dimensions.width]
+        }
+        return [0, 0]
     }, [image, ref])
 
     const resolvedSizes = useMemo(() => {

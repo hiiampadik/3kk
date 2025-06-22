@@ -2,22 +2,21 @@ import Layout from '../components/Layout';
 import React from 'react';
 import {sanityFetch} from '@/sanity/client';
 import {GetStaticPropsContext} from 'next';
-import {Homepage, QUERY_HOMEPAGE} from '@/api/homepage';
-import {useLocale} from '@/components/utils/useLocale';
+import {QUERY_HOMEPAGE} from '@/api/homepage';
+import {Homepage as HomepageType} from '../api/homepage'
 
-export default function Home({data}: any) {
-    const locale = useLocale();
-    const homepage = Homepage.fromPayload(data, locale)
+export default function Home({data}: {data: HomepageType}) {
 
+    console.log(data)
     return (
         <Layout>
-            Homepage {homepage.Id}
+            Homepage {data._id}
         </Layout>
 );
 }
 
 export async function getStaticProps(context: GetStaticPropsContext) {
-    const data = await sanityFetch({query: QUERY_HOMEPAGE, useCdn: false});
+    const data: HomepageType = await sanityFetch({query: QUERY_HOMEPAGE, useCdn: false});
 
     return {
         props: {

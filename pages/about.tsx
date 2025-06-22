@@ -1,23 +1,20 @@
 import Layout from '../components/Layout';
 import React from 'react';
-import {About as AboutClass, QUERY_ABOUT} from '@/api/about'
 import {sanityFetch} from '@/sanity/client';
 import {GetStaticPropsContext} from 'next';
-import {useLocale} from '@/components/utils/useLocale';
+import {QUERY_ABOUT} from '@/api/queries';
+import {About as AboutSanity} from '../api/sanity.types'
 
-export default function About({data}: any) {
-    const locale = useLocale();
-    const about = AboutClass.fromPayload(data, locale);
-
+export default function About({data}: {data: AboutSanity}) {
     return (
         <Layout>
-            About {about.Id}
+            About {data._id}
         </Layout>
     );
 }
 
 export async function getStaticProps(context: GetStaticPropsContext) {
-    const data = await sanityFetch({query: QUERY_ABOUT, useCdn: false});
+    const data: AboutSanity = await sanityFetch({query: QUERY_ABOUT, useCdn: false});
 
     return {
         props: {

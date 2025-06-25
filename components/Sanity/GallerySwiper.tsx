@@ -10,7 +10,7 @@ import "swiper/css/mousewheel";
 
 import {FreeMode, Mousewheel, Scrollbar} from 'swiper/modules';
 import Figure from '@/components/Sanity/Figure';
-import {Image} from '@/api/image';
+import {internalGroqTypeReferenceTo, SanityImageCrop, SanityImageHotspot} from '@/api/sanity.types';
 
 
 interface GalleryProps {
@@ -61,7 +61,18 @@ export default GallerySwiper
 
 
 interface GallerySlideProps {
-    readonly image: Image
+    readonly image: {
+        asset?: {
+            _ref: string
+            _type: 'reference'
+            _weak?: boolean
+            [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
+        }
+        media?: unknown
+        hotspot?: SanityImageHotspot
+        crop?: SanityImageCrop
+        _type: 'image'
+    }
     readonly galleryImage?: boolean
     readonly fullWidth?: boolean
 }
@@ -70,7 +81,7 @@ const GallerySlide: FunctionComponent<GallerySlideProps> = ({image, galleryImage
     return (
         <Figure
             image={image}
-            alt={image.alt}
+            alt={'TODO'}
             galleryImage={galleryImage}
             fullWidth={fullWidth}
         />

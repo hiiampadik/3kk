@@ -5,9 +5,9 @@
   -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
 
-  font-family: -apple-system, 'Helvetica Neue', 'Arial', sans-serif;
+  font-family: neue-haas-unica, 'Helvetica', 'Arial', sans-serif;
 
-  font-size: 16px;
+  font-size: 15px;
   text-rendering: optimizeLegibility;
   line-height: 1.38;
   color: black;
@@ -23,6 +23,7 @@ body {
   padding: 0;
   margin: 0;
   color: black;
+  background: #F8F8F8;
 }
 
 body {
@@ -38,8 +39,6 @@ main {
   flex-direction: column;
   justify-content: flex-start;
   min-height: 100vh;
-  //background: white;
-  background: white;
   position: relative;
 }
 

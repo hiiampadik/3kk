@@ -12,6 +12,7 @@ export const QUERY_HOMEPAGE = groq`*[_type == 'homepage'][0]{
 program[]{
     ...,
     project->{
+        _id,
         title,
         slug,
         description,
@@ -39,6 +40,7 @@ export type Homepage = {
     }
     program?: Array<{
         project: {
+            _id: string
             title: LocalizedString
             slug: Slug
             description: LocalizedRichParagraph

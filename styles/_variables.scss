@@ -8,3 +8,28 @@ $breakpoint-lg-max: 1199px;
 $breakpoint-xl-min: 1200px;
 $breakpoint-xl-max: 1399px;
 $breakpoint-xxl-min: 1400px;
+
+
+
+
+@mixin shadowBox {
+  box-shadow: inset 0 2px 7px rgba(0,0,0,0.4);
+}
+
+@mixin mono {
+  font-family: ibm-plex-mono, monospace;
+  font-size: 15px;
+}
+
+@mixin headline {
+  font-family: neue-haas-unica, 'Helvetica', 'Arial', sans-serif;
+  font-weight: 400;
+  font-size: 70px;
+  letter-spacing: -1px;
+}
+
+@mixin underline {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
+}

@@ -1,5 +1,8 @@
 {
     "Navigation": {
-        "menu": "Menu"
+        "repertoire": "Repertoár",
+        "about": "O Divadle",
+        "contact": "Kontakt",
+        "tickets": "Vstupenky"
     }
 }

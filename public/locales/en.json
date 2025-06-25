@@ -1,5 +1,8 @@
 {
     "Navigation": {
-        "menu": "Menu"
+        "repertoire": "Repertoire",
+        "about": "About",
+        "contact": "Contact",
+        "tickets": "Tickets"
     }
 }

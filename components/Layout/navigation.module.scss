@@ -1,0 +1,118 @@
+@import '../../styles/variables';
+
+.content {
+  margin-top: 40px
+}
+
+.link {
+  @include bigLink;
+  @media (hover: hover) {
+    &:hover {
+      background: #D0D0D0;
+    }
+  }
+}
+
+.navigationContainer {
+  padding: 30px;
+
+  .logo {
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    margin-right: auto;
+    svg {
+      width: 350px;
+    }
+  }
+  .link1 {
+    border-radius: 60px;
+    background: #F1E34C;
+  }
+  .link2 {
+    border-radius: 10px;
+    background: #ED8F7B
+  }
+  .link3 {
+    border-radius: 60px;
+    background: #2B57FF;
+  }
+  .link4 {
+    border-radius: 10px;
+  }
+  .language{
+    padding: 0;
+    border-radius: 60px;
+    width: 140px;
+  }
+}
+
+
+.navigationTop {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  margin-bottom: 10px;
+
+  @media (max-width: 1500px) {
+    flex-direction: column;
+  }
+
+  .pageLinks {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+}
+
+
+.navigationBottom{
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+
+  @media (max-width: $breakpoint-md-max) {
+    flex-direction: column-reverse;
+  }
+  .cover {
+    flex: 1 1 auto;
+    position: relative;
+    border-radius: 10px;
+    overflow: hidden;
+    max-height: calc(100vh - 200px);
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+  }
+  .cover::after {
+    position: absolute;
+    content: '';
+    z-index: 1;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    @include shadowBox;
+  }
+
+  .navigationCoverLink {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    @media (max-width: $breakpoint-md-max) {
+      flex-direction: row;
+    }
+  }
+}
+
+
+
+.pageLinks {
+
+}

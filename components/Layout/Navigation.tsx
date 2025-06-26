@@ -5,12 +5,16 @@ import {usePathname} from 'next/navigation';
 import Overlay from '@/components/Overlay';
 import {useDisableScroll} from '@/components/utils/useDisableScroll';
 import Link from 'next/link';
-import styles from './index.module.scss';
+import styles from './navigation.module.scss';
 import {classNames} from '@/components/utils/classNames';
 import {logoVertical} from '@/components/Layout/LogoVertical';
 import {useTranslations} from 'next-intl';
+import Figure from '@/components/Sanity/Figure';
 
-const Navigation: FunctionComponent = () => {
+interface NavigationProps {
+    readonly cover?: { asset?: { _ref: string }};
+}
+const Navigation: FunctionComponent<NavigationProps> = ({cover}) => {
     const router = useRouter();
     const currentPath = usePathname();
     const t = useTranslations('Navigation');
@@ -31,55 +35,39 @@ const Navigation: FunctionComponent = () => {
     return (
         <>
             <div className={styles.navigationContainer}>
-                <div className={styles.navigationLeftContainer}>
+                <div className={styles.navigationTop}>
                     <Link href={"/"} className={classNames([styles.link, styles.logo])}>
                         {logoVertical}
                     </Link>
+                    <Links />
                 </div>
-                <div className={styles.navigationRightContainer}>
-                    <Link
-                        href={"/projects"}
-                        className={classNames([styles.link, styles.link1])}
-                        prefetch={false}>
-                        {t('repertoire')}
-                    </Link>
-                    <Link
-                        href={"/about"}
-                        className={classNames([styles.link, styles.link2])}
-                        prefetch={false}
-                    >
-                        {t('about')}
-                    </Link>
-                    <Link
-                        href={"/contact"}
-                        className={classNames([styles.link, styles.link3])}
-                        prefetch={false}
-                    >
-                        {t('contact')}
-                    </Link>
+                <div className={styles.navigationBottom}>
+                    {cover &&
+                        <div className={styles.cover}>
+                            <Figure image={cover} fullWidth={true}/>
+                        </div>
+                    }
 
-                    <a
-                        href={"https://goout.net/cs/divadlo-3+kk/pzwidng/"}
-                        className={classNames([styles.link, styles.link4])}
-                    >
-                        {t('tickets')}
-                    </a>
+                    <div className={styles.navigationCoverLink}>
+                        <a href={"https://goout.net/cs/divadlo-3+kk/pzwidng/"} className={classNames([styles.link, styles.link4])}>
+                            {t('tickets')}
+                        </a>
 
-
-                    <Link
-                        href={router.asPath}
-                        locale={router.locale === "cs" ? "en" : "cs"}
-                        className={classNames([styles.link, styles.language])}
-                        prefetch={false}
-                    >
-                        {router.locale === "cs" ? "En" : "Cz"}
-                    </Link>
+                        <Link
+                            href={router.asPath}
+                            locale={router.locale === "cs" ? "en" : "cs"}
+                            className={classNames([styles.link, styles.language])}
+                            prefetch={false}
+                        >
+                            {router.locale === "cs" ? "En" : "Cz"}
+                        </Link>
+                    </div>
                 </div>
             </div>
 
             <Overlay handleClose={() => setShowOverlay(null)} isOpen={showOverlay !== null}>
                 {showOverlay === 'menu' &&
-                    <NavigationOverlay />
+                    <NavigationOverlay/>
                 }
             </Overlay>
         </>
@@ -92,6 +80,34 @@ const NavigationOverlay: FunctionComponent = () => {
     return (
         <div>
             Overlay
+        </div>
+    )
+}
+
+const Links: FunctionComponent = () => {
+    const t = useTranslations('Navigation');
+    return (
+        <div className={styles.pageLinks}>
+            <Link
+                href={"/projects"}
+                className={classNames([styles.link, styles.link1])}
+                prefetch={false}>
+                {t('repertoire')}
+            </Link>
+            <Link
+                href={"/about"}
+                className={classNames([styles.link, styles.link2])}
+                prefetch={false}
+            >
+                {t('about')}
+            </Link>
+            <Link
+                href={"/contact"}
+                className={classNames([styles.link, styles.link3])}
+                prefetch={false}
+            >
+                {t('contact')}
+            </Link>
         </div>
     )
 }

@@ -4,5 +4,30 @@
         "about": "O Divadle",
         "contact": "Kontakt",
         "tickets": "Vstupenky"
+    },
+
+    "Footer": {
+        "partners": "Partneři"
+    },
+
+    "Homepage": {
+        "tickets": "Vstupenky"
+    },
+
+    "Repertoire": {
+        "repertoire": "Repertoár",
+        "archived": "Archiv",
+        "ongoing": "Aktuální",
+        "planned": "Připravujeme"
+    },
+
+    "About": {
+        "about": "O Divadle"
+    },
+
+    "Contact": {
+        "contact": "Kontakt",
+        "address": "Adresa",
+        "team": "Tým"
     }
 }

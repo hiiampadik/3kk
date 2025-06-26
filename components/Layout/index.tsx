@@ -2,7 +2,7 @@ import React, {FunctionComponent, PropsWithChildren} from 'react';
 import Head from "next/head";
 import Navigation from './Navigation';
 import Footer from '@/components/Layout/Footer';
-import styles from './index.module.scss'
+import styles from './navigation.module.scss'
 import {classNames} from '@/components/utils/classNames';
 import {useRouter} from 'next/router';
 import {useLocale} from '@/components/utils/useLocale';
@@ -14,6 +14,7 @@ export const WEBSITE_URL = 'https://www.tripluskk.cz/'
 interface LayoutProps {
     readonly title?: string
     readonly loading?: boolean;
+    readonly cover?: { asset?: { _ref: string }};
     readonly image?: {
         url: string,
         width: string,
@@ -25,7 +26,8 @@ const Layout: FunctionComponent<PropsWithChildren<LayoutProps>> = (
     {children,
         title,
         loading = undefined,
-        image
+        image,
+        cover
     }) => {
 
     const pageTitle = title ? title + ` | ${WEBSITE_NAME}` : WEBSITE_NAME
@@ -132,7 +134,7 @@ const Layout: FunctionComponent<PropsWithChildren<LayoutProps>> = (
             />
 
             <main>
-                <Navigation/>
+                <Navigation cover={cover}/>
                 <div className={classNames([styles.content, loading ? styles.loading : styles.loaded])}>
                     {children}
                 </div>

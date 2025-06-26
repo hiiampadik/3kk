@@ -5,17 +5,21 @@ import {GetStaticPropsContext} from 'next';
 import {QUERY_HOMEPAGE} from '@/api/homepage';
 import {Homepage as HomepageType} from '../api/homepage'
 import Link from 'next/link';
-import Figure from '@/components/Sanity/Figure';
 import styles from '../styles/homepage.module.scss'
+import LocalizedDate from '@/components/utils/LocalizeDate';
+import localizedDate from '@/components/utils/LocalizeDate';
+import {useLocale} from '@/components/utils/useLocale';
+import localizedTime from '@/components/utils/LocalizeTime';
+import BlockContent from '@/components/Sanity/BlockContent';
+import {useTranslations} from 'next-intl';
 
 export default function Home({data}: {data: HomepageType}) {
+    const locale = useLocale()
+    const t = useTranslations('Homepage');
 
     return (
-        <Layout>
+        <Layout cover={data.cover}>
             <div className={styles.homepageContainer}>
-                {/*<div className={styles.coverContainer}>*/}
-                {/*    <Figure image={data.cover} />*/}
-                {/*</div>*/}
                 <h1>Program</h1>
                 <ul>
                     {data.program?.map(event => (
@@ -25,14 +29,25 @@ export default function Home({data}: {data: HomepageType}) {
                                   key={event.project._id}
                                   className={styles.linkContainer}
                             >
-                                <div className={styles.date}>
-                                    Date
+                                <div className={styles.dateContainer}>
+                                    <p className={styles.date}>{localizedDate(event.date, locale)}</p>
+                                    <p className={styles.time}>
+                                        {localizedTime(event.date, locale)}
+                                    </p>
+                                    <p className={styles.location}>
+                                        {event.location}
+                                    </p>
                                 </div>
-                                <div className={styles.name}>
-                                    <h2>{event.project.title['cs']}</h2>
+                                <div className={styles.nameContainer}>
+                                    <h2>{event.project.title[locale]}</h2>
+                                    <div className={styles.description}>
+                                        <BlockContent blocks={event.project.description[locale]} />
+                                    </div>
                                 </div>
                             </Link>
-                            <a href={'todo'} className={styles.tickets}>Tickets</a>
+                            {event.ticket &&
+                                <a href={event.ticket} className={styles.tickets}>{t('tickets')}</a>
+                            }
                         </li>
                     ))}
                 </ul>

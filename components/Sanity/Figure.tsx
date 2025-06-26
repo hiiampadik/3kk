@@ -5,23 +5,11 @@ import {getImageDimensions} from '@sanity/asset-utils';
 import {classNames} from '@/components/utils/classNames';
 import client from '@/sanity/client';
 import styles from './Figure.module.scss'
-import {internalGroqTypeReferenceTo, SanityImageCrop, SanityImageHotspot} from '@/api/sanity.types';
 
 const builder = imageUrlBuilder(client);
 
 interface FigureProps {
-    readonly image: {
-        asset?: {
-            _ref: string
-            _type: 'reference'
-            _weak?: boolean
-            [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
-        }
-        media?: unknown
-        hotspot?: SanityImageHotspot
-        crop?: SanityImageCrop
-        _type: 'image'
-    };
+    readonly image: { asset?: { _ref: string }};
     readonly alt?: string | null
     readonly className?: string
     readonly onClick?: () => void

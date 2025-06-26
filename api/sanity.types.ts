@@ -20,10 +20,7 @@ export type Contact = {
   _updatedAt: string
   _rev: string
   address: LocalizedRichParagraph
-  contacts?: Array<{
-    name: LocalizedRichParagraph
-    _key: string
-  }>
+  contacts: LocalizedRichParagraph
   team?: Array<{
     name: string
     photo?: {

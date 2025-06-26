@@ -30,11 +30,26 @@
   border-radius: 10px;
   display: flex;
   gap: 10px;
-  .date{
+  .dateContainer{
     flex: 0 0 250px;
+    .date {
+      @include headline;
+      font-variant-numeric: lining-nums proportional-nums;
+
+    }
+    .time, .location {
+      @include mono;
+    }
   }
-  .name{
+  .nameContainer{
     flex: 1 0 auto;
+    h2 {
+      @include headline;
+    }
+    .description {
+      @include mono;
+      max-width: 800px;
+    }
   }
 
   @media (hover: hover) {
@@ -45,13 +60,5 @@
 }
 
 .tickets {
-  @include shadowBox;
-  padding: 0 50px;
-  height: 120px;
-  line-height: 120px;
-  background: #D0D0D0;
-  font-size: 70px;
-  text-decoration: none;
-  border-radius: 10px;
-  letter-spacing: -1px;
+  @include bigLink;
 }

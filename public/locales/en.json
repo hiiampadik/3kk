@@ -4,5 +4,31 @@
         "about": "About",
         "contact": "Contact",
         "tickets": "Tickets"
+    },
+
+    "Footer": {
+        "partners": "Partners"
+    },
+
+    "Homepage": {
+        "tickets": "Tickets"
+    },
+
+
+    "Repertoire": {
+        "repertoire": "Repertoire",
+        "archived": "Archive",
+        "ongoing": "Ongoing",
+        "planned": "Planned"
+    },
+
+    "About": {
+        "about": "About"
+    },
+
+    "Contact": {
+        "contact": "Contact",
+        "address": "Address",
+        "team": "Team"
     }
 }

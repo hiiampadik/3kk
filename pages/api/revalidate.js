@@ -19,25 +19,10 @@ export default async function handler(req, res) {
         let path = '';
         let slug = ''
         switch(type){
-            case 'exhibitions':
+            case 'projects':
                 slug = req.body.slug.current
                 console.log(`===== Revalidating: ${type}, ${slug}`);
-                path = `exhibition/${slug}`;
-                break;
-            case 'fairs':
-                slug = req.body.slug.current
-                console.log(`===== Revalidating: ${type}, ${slug}`);
-                path = `fair/${slug}`;
-                break;
-            case 'artistEvents':
-                slug = req.body.slug.current
-                console.log(`===== Revalidating: ${type}, ${slug}`);
-                path = `artists-event/${slug}`;
-                break;
-            case 'artists':
-                slug = req.body.slug.current
-                console.log(`===== Revalidating: ${type}, ${slug}`);
-                path = `artist/${slug}`;
+                path = `projects/${slug}`;
                 break;
             case 'homepage':
                 console.log(`===== Revalidating: Homepage`);
@@ -46,6 +31,10 @@ export default async function handler(req, res) {
             case 'about':
                 console.log(`===== Revalidating: About`);
                 path = 'about';
+                break
+            case 'contact':
+                console.log(`===== Revalidating: Contact`);
+                path = 'contact';
                 break
             default:
                 console.log(`===== Wrong type ${type}`);

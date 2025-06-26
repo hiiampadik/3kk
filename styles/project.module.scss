@@ -1,0 +1,38 @@
+@import '_variables.scss';
+
+.projectContainer {
+  padding: 30px;
+  max-width: 1000px;
+  min-height: 300px;
+  h1 {
+    @include headline
+  }
+  .projectDetail {
+    margin: 40px 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+
+    .team {
+      @include mono;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      .role {
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+      .name {
+        letter-spacing: 1px;
+      }
+    }
+    .program {
+      @include mono;
+      margin-bottom: 40px;
+    }
+    .abstract {
+      @include mono;
+    }
+  }
+
+}

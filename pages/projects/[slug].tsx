@@ -4,13 +4,40 @@ import {sanityFetch} from '@/sanity/client';
 import Layout from '@/components/Layout';
 import {Project as ProjectSanity} from '../../api/sanity.types'
 import {QUERY_ALL_PROJECTS_SLUGS, QUERY_PROJECT_DETAILS} from '@/api/queries';
+import styles from '../../styles/project.module.scss'
+import {useLocale} from '@/components/utils/useLocale';
+import BlockContent from '@/components/Sanity/BlockContent';
 
 export default function Project({data}: {data: ProjectSanity}) {
+    const locale = useLocale()
     return (
         <Layout
             title={'todo'}
+            cover={data.cover}
         >
-            {data.status}
+            <div className={styles.projectContainer}>
+                <h1>{data.title[locale]}</h1>
+                <div className={styles.projectDetail}>
+                    <div className={styles.team}>
+                        {data.team?.map(member => (
+                            <div className={styles.member}>
+                                <p className={styles.role}>{member.role[locale]}{':'}</p>
+                                <p className={styles.name}>{member.name}</p>
+                            </div>
+                        ))}
+                    </div>
+                    <div>
+                        {/*<div className={styles.program}>*/}
+                        {/*    TODO*/}
+                        {/*</div>*/}
+                        <div className={styles.abstract}>
+                            <BlockContent blocks={data.abstract[locale]}/>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
         </Layout>
     )
 }

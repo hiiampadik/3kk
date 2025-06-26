@@ -39,8 +39,6 @@ export default function Contact({data}: {data: ContactSanity}) {
                     ))}
                     </div>
                 </div>
-
-
             </div>
         </Layout>
     );

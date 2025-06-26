@@ -1,0 +1,7 @@
+@import '_variables.scss';
+
+.notFoundContainer {
+  text-align: center;
+  @include headline;
+  margin: 40px 0 100px 0;
+}

@@ -21,6 +21,15 @@ export type Contact = {
   _rev: string
   address: LocalizedRichParagraph
   contacts: LocalizedRichParagraph
+}
+
+export type About = {
+  _id: string
+  _type: 'about'
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  text: LocalizedRichParagraph
   team?: Array<{
     name: string
     photo?: {
@@ -38,15 +47,6 @@ export type Contact = {
     role: LocalizedString
     _key: string
   }>
-}
-
-export type About = {
-  _id: string
-  _type: 'about'
-  _createdAt: string
-  _updatedAt: string
-  _rev: string
-  text: LocalizedRichParagraph
 }
 
 export type Homepage = {

@@ -22,23 +22,6 @@ export default function Contact({data}: {data: ContactSanity}) {
                     <BlockContent blocks={data.contacts[locale]}/>
                     <BlockContent blocks={data.address[locale]}/>
                 </div>
-
-                <div className={styles.teamContainer}>
-                    <h2>{t('team')}</h2>
-                    <div className={styles.teamList}>
-                    {data.team?.map((member, index) => (
-                        <div key={index}>
-                            <div className={styles.cover}>
-                                   {member.photo &&
-                                       <Figure image={member.photo} />
-                                   }
-                            </div>
-                            <h3>{member.name}</h3>
-                            <p>{member.role[locale]}</p>
-                        </div>
-                    ))}
-                    </div>
-                </div>
             </div>
         </Layout>
     );

@@ -8,6 +8,7 @@ import styles from '../styles/about.module.scss'
 import {useTranslations} from 'next-intl';
 import BlockContent from '@/components/Sanity/BlockContent';
 import {useLocale} from '@/components/utils/useLocale';
+import Figure from '@/components/Sanity/Figure';
 
 export default function About({data}: {data: AboutSanity}) {
     const t = useTranslations('About');
@@ -18,7 +19,24 @@ export default function About({data}: {data: AboutSanity}) {
             <div className={styles.aboutContainer}>
                 <h1>{t('about')}</h1>
                 <div className={styles.aboutParagraph}>
-                    <BlockContent blocks={data.text[locale]} />
+                    <BlockContent blocks={data.text[locale]}/>
+                </div>
+
+                <div className={styles.teamContainer}>
+                    <h2>{t('team')}</h2>
+                    <div className={styles.teamList}>
+                        {data.team?.map((member, index) => (
+                            <div key={index}>
+                                <div className={styles.cover}>
+                                    {member.photo &&
+                                        <Figure image={member.photo}/>
+                                    }
+                                </div>
+                                <h3>{member.name}</h3>
+                                <p>{member.role[locale]}</p>
+                            </div>
+                        ))}
+                    </div>
                 </div>
             </div>
         </Layout>

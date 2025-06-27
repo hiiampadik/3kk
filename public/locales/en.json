@@ -23,12 +23,12 @@
     },
 
     "About": {
-        "about": "About"
+        "about": "About",
+        "team": "Team"
     },
 
     "Contact": {
         "contact": "Contact",
-        "address": "Address",
-        "team": "Team"
+        "address": "Address"
     }
 }

@@ -22,12 +22,12 @@
     },
 
     "About": {
-        "about": "O Divadle"
+        "about": "O Divadle",
+        "team": "Tým"
     },
 
     "Contact": {
         "contact": "Kontakt",
-        "address": "Adresa",
-        "team": "Tým"
+        "address": "Adresa"
     }
 }

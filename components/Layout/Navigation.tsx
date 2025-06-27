@@ -35,35 +35,23 @@ const Navigation: FunctionComponent<NavigationProps> = ({cover}) => {
     return (
         <>
             <div className={styles.navigationContainer}>
-                <div className={styles.navigationTop}>
+                <div className={styles.siteNavigation}>
                     <Link href={"/"} className={classNames([styles.link, styles.logo])}>
                         {logoVertical}
                     </Link>
                     <Links />
                 </div>
-                <div className={styles.navigationBottom}>
-                    {cover &&
-                        <div className={styles.cover}>
-                            <Figure image={cover} fullWidth={true}/>
-                        </div>
-                    }
+                <SmallLinks />
+            </div>
 
-                    <div className={styles.navigationCoverLink}>
-                        <a href={"https://goout.net/cs/divadlo-3+kk/pzwidng/"} className={classNames([styles.link, styles.link4])}>
-                            {t('tickets')}
-                        </a>
 
-                        <Link
-                            href={router.asPath}
-                            locale={router.locale === "cs" ? "en" : "cs"}
-                            className={classNames([styles.link, styles.language])}
-                            prefetch={false}
-                        >
-                            {router.locale === "cs" ? "En" : "Cz"}
-                        </Link>
+            {cover &&
+                <div className={styles.coverContainer}>
+                    <div className={styles.cover}>
+                        <Figure image={cover} fullWidth={true}/>
                     </div>
                 </div>
-            </div>
+            }
 
             <Overlay handleClose={() => setShowOverlay(null)} isOpen={showOverlay !== null}>
                 {showOverlay === 'menu' &&
@@ -87,26 +75,50 @@ const NavigationOverlay: FunctionComponent = () => {
 const Links: FunctionComponent = () => {
     const t = useTranslations('Navigation');
     return (
-        <div className={styles.pageLinks}>
+        <>
             <Link
                 href={"/projects"}
                 className={classNames([styles.link, styles.link1])}
                 prefetch={false}>
                 {t('repertoire')}
             </Link>
+            <div className={styles.inner}>
+                <Link
+                    href={"/about"}
+                    className={classNames([styles.link, styles.link2])}
+                    prefetch={false}
+                >
+                    {t('about')}
+                </Link>
+                <Link
+                    href={"/contact"}
+                    className={classNames([styles.link, styles.link3])}
+                    prefetch={false}
+                >
+                    {t('contact')}
+                </Link>
+            </div>
+        </>
+    )
+}
+
+const SmallLinks: FunctionComponent = () => {
+    const router = useRouter();
+    const t = useTranslations('Navigation');
+
+    return (
+        <div className={styles.smallLinks}>
+            <a href={"https://goout.net/cs/divadlo-3+kk/pzwidng/"} className={classNames([styles.smallLink])}>
+                <p>{t('tickets')}</p>
+            </a>
+
             <Link
-                href={"/about"}
-                className={classNames([styles.link, styles.link2])}
+                href={router.asPath}
+                locale={router.locale === "cs" ? "en" : "cs"}
+                className={classNames([styles.smallLink])}
                 prefetch={false}
             >
-                {t('about')}
-            </Link>
-            <Link
-                href={"/contact"}
-                className={classNames([styles.link, styles.link3])}
-                prefetch={false}
-            >
-                {t('contact')}
+                <p>{router.locale === "cs" ? "En" : "Cz"}</p>
             </Link>
         </div>
     )

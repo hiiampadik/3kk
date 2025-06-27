@@ -8,7 +8,6 @@ import styles from '@/styles/contact.module.scss';
 import BlockContent from '@/components/Sanity/BlockContent';
 import {useTranslations} from 'next-intl';
 import {useLocale} from '@/components/utils/useLocale';
-import Figure from '@/components/Sanity/Figure';
 
 export default function Contact({data}: {data: ContactSanity}) {
     const t = useTranslations('Contact');

@@ -3,6 +3,7 @@ import {FunctionComponent, PropsWithChildren} from 'react';
 import {Overlay2} from '@blueprintjs/core';
 import styles from './index.module.scss';
 import {classNames} from '@/components/utils/classNames';
+import {useTranslations} from 'next-intl';
 
 interface OverlayProps {
     readonly isOpen?: boolean
@@ -12,6 +13,7 @@ interface OverlayProps {
 }
 
 const Overlay: FunctionComponent<PropsWithChildren<OverlayProps>> = ({isOpen = true, scrollable = false, handleClose, children, className}) => {
+    const t = useTranslations('Navigation');
     return (
         <>
             {isOpen &&
@@ -21,12 +23,10 @@ const Overlay: FunctionComponent<PropsWithChildren<OverlayProps>> = ({isOpen = t
                     hasBackdrop={true}
                 >
                     <div className={classNames([styles.container, scrollable ? styles.scrollable : styles.notScrollable])}>
-                        <button onClick={() => handleClose()}>
-                            CLOSE
+                        <button onClick={() => handleClose()} className={styles.close}>
+                            {t('close')}
                         </button>
-                        <div className={className}>
-                            {children}
-                        </div>
+                        {children}
                     </div>
                 </Overlay2>
             }

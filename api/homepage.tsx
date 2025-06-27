@@ -38,6 +38,7 @@ export type Homepage = {
         crop?: SanityImageCrop
         _type: 'image'
     }
+    description: LocalizedRichParagraph
     program?: Array<{
         project: {
             _id: string

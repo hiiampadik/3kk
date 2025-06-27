@@ -67,6 +67,7 @@ export type Homepage = {
     crop?: SanityImageCrop
     _type: 'image'
   }
+  description: LocalizedRichParagraph
   program?: Array<{
     project: {
       _ref: string
@@ -131,12 +132,6 @@ export type Project = {
   }>
 }
 
-export type LocalizedText = {
-  _type: 'localizedText'
-  cs?: string
-  en?: string
-}
-
 export type LocalizedRichParagraph = {
   _type: 'localizedRichParagraph'
   cs?: Array<{
@@ -177,46 +172,6 @@ export type LocalizedRichParagraph = {
   }>
 }
 
-export type LocalizedRichText = {
-  _type: 'localizedRichText'
-  cs?: Array<{
-    children?: Array<{
-      marks?: Array<string>
-      text?: string
-      _type: 'span'
-      _key: string
-    }>
-    style?: 'normal' | 'h1'
-    listItem?: never
-    markDefs?: Array<{
-      href?: string
-      _type: 'link'
-      _key: string
-    }>
-    level?: number
-    _type: 'block'
-    _key: string
-  }>
-  en?: Array<{
-    children?: Array<{
-      marks?: Array<string>
-      text?: string
-      _type: 'span'
-      _key: string
-    }>
-    style?: 'normal' | 'h1'
-    listItem?: never
-    markDefs?: Array<{
-      href?: string
-      _type: 'link'
-      _key: string
-    }>
-    level?: number
-    _type: 'block'
-    _key: string
-  }>
-}
-
 export type LocalizedString = {
   _type: 'localizedString'
   cs?: string
@@ -237,25 +192,6 @@ export type GalleryArray = Array<{
     _type: 'image'
   }
   alt?: string
-  _key: string
-}>
-
-export type BlockRichText = Array<{
-  children?: Array<{
-    marks?: Array<string>
-    text?: string
-    _type: 'span'
-    _key: string
-  }>
-  style?: 'normal' | 'h1'
-  listItem?: never
-  markDefs?: Array<{
-    href?: string
-    _type: 'link'
-    _key: string
-  }>
-  level?: number
-  _type: 'block'
   _key: string
 }>
 
@@ -437,12 +373,9 @@ export type AllSanitySchemaTypes =
     | About
     | Homepage
     | Project
-    | LocalizedText
     | LocalizedRichParagraph
-    | LocalizedRichText
     | LocalizedString
     | GalleryArray
-    | BlockRichText
     | BlockRichParagraph
     | DocumentsArray
     | MediaTag

@@ -4,6 +4,30 @@
   margin-top: 40px
 }
 
+.link, .menu {
+  @include bigLink;
+}
+.logo {
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  svg {
+    width: 6em;
+  }
+}
+.link1 {
+  border-radius: 60px;
+  background: #F1E34C;
+}
+.link2 {
+  border-radius: 10px;
+  background: #ED8F7B
+}
+.link3 {
+  border-radius: 60px;
+  background: #2B57FF;
+}
+
 .navigationContainer {
   padding: 30px 30px 10px;
   display: flex;
@@ -23,38 +47,19 @@
     gap: 10px;
   }
 
-  .link {
-    @include bigLink;
-    @media (hover: hover) {
-      &:hover {
-        background: #D0D0D0;
-      }
-    }
-  }
-  .logo {
-    border-radius: 10px;
-    display: flex;
-    align-items: center;
-    svg {
-      width: 350px;
-    }
-  }
-  .link1 {
-    border-radius: 60px;
+  .menu {
+    border: none;
+    display: none;
     background: #F1E34C;
-  }
-  .link2 {
-    border-radius: 10px;
-    background: #ED8F7B
-  }
-  .link3 {
-    border-radius: 60px;
-    background: #2B57FF;
+    cursor: pointer;
   }
 
   @media (max-width: 1000px) {
-    .link1, .link2, .link3 {
+    .link1, .link2, .link3, .inner {
       display: none;
+    }
+    .menu {
+      display: block;
     }
   }
 }
@@ -68,12 +73,7 @@
   flex: 0 0 130px;
 
   .smallLink {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: white;
-    @include shadowBox;
-    border-radius: 50px;
+    @include smallLink;
     flex: 1 1 auto;
 
     p{
@@ -81,11 +81,23 @@
       @include mono;
     }
   }
+
+  @media (max-width: $breakpoint-sm-max) {
+    height: 70px;
+    flex: 0 0 45px;
+    .tickets {
+      display: none;
+    }
+  }
 }
 
 
 .coverContainer {
   padding: 0 30px;
+  display: flex;
+  align-items: stretch;
+  gap: 10px;
+
 
   .cover {
     flex: 1 1 auto;
@@ -112,6 +124,33 @@
     bottom: 0;
     @include shadowBox;
   }
+
+  .description {
+    @include mono;
+    align-self: flex-end;
+    flex: 1 0 250px;
+  }
+
+  @media (max-width: $breakpoint-sm-max) {
+    flex-direction: column;
+    .description {
+      align-self: flex-start;
+      flex: 1 0 auto;
+    }
+  }
 }
 
-
+.overlayMenu {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  gap: 10px;
+  .inner{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+}

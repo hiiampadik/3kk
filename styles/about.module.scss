@@ -26,10 +26,17 @@
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     gap: 10px;
+    @include mono;
   }
 
   h3 {
     margin: 20px 0 0;
+    @include mono;
+  }
+
+  p {
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
   }
 
   .cover {

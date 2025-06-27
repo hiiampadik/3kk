@@ -14,8 +14,8 @@ const Footer: FunctionComponent = () => {
         <div className={styles.footerContainer}>
             <div className={styles.leftContainer}>
                 <div className={styles.socials}>
-                    <a href={''} target={'_blank'}>FB</a>
-                    <a href={''} target={'_blank'}>IG</a>
+                    <a href={'https://www.facebook.com/3pluskk'} target={'_blank'}>FB</a>
+                    <a href={'https://www.instagram.com/3pluskk/'} target={'_blank'}>IG</a>
                 </div>
                 <div className={styles.telMail}>
                     <a href="mailto:tripluskk@gmail.com">tripluskk@gmail.com</a><br/>

@@ -18,7 +18,7 @@ export default function Home({data}: {data: HomepageType}) {
     const t = useTranslations('Homepage');
 
     return (
-        <Layout cover={data.cover}>
+        <Layout cover={data.cover} description={data.description}>
             <div className={styles.homepageContainer}>
                 <h1>Program</h1>
                 <ul>

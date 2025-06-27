@@ -6,6 +6,7 @@ import styles from './navigation.module.scss'
 import {classNames} from '@/components/utils/classNames';
 import {useRouter} from 'next/router';
 import {useLocale} from '@/components/utils/useLocale';
+import {LocalizedRichParagraph} from '@/api/sanity.types';
 
 export const WEBSITE_NAME = '3+KK'
 export const WEBSITE_DESCRIPTION = "We are a progressive theatre"
@@ -15,6 +16,7 @@ interface LayoutProps {
     readonly title?: string
     readonly loading?: boolean;
     readonly cover?: { asset?: { _ref: string }};
+    readonly description?: LocalizedRichParagraph
     readonly image?: {
         url: string,
         width: string,
@@ -27,7 +29,8 @@ const Layout: FunctionComponent<PropsWithChildren<LayoutProps>> = (
         title,
         loading = undefined,
         image,
-        cover
+        cover,
+        description
     }) => {
 
     const pageTitle = title ? title + ` | ${WEBSITE_NAME}` : WEBSITE_NAME
@@ -134,7 +137,7 @@ const Layout: FunctionComponent<PropsWithChildren<LayoutProps>> = (
             />
 
             <main>
-                <Navigation cover={cover}/>
+                <Navigation cover={cover} description={description}/>
                 <div className={classNames([styles.content, loading ? styles.loading : styles.loaded])}>
                     {children}
                 </div>

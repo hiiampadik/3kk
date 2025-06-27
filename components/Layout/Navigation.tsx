@@ -10,27 +10,30 @@ import {classNames} from '@/components/utils/classNames';
 import {logoVertical} from '@/components/Layout/LogoVertical';
 import {useTranslations} from 'next-intl';
 import Figure from '@/components/Sanity/Figure';
+import {LocalizedRichParagraph} from '@/api/sanity.types';
+import BlockContent from '@/components/Sanity/BlockContent';
+import {useLocale} from '@/components/utils/useLocale';
 
 interface NavigationProps {
     readonly cover?: { asset?: { _ref: string }};
+    readonly description?: LocalizedRichParagraph
 }
-const Navigation: FunctionComponent<NavigationProps> = ({cover}) => {
+
+const Navigation: FunctionComponent<NavigationProps> = ({cover, description}) => {
     const router = useRouter();
-    const currentPath = usePathname();
-    const t = useTranslations('Navigation');
+    const locale = useLocale()
 
-    const [showOverlay, setShowOverlay] = useState<'menu' | null>(null);
-
+    const [showOverlay, setShowOverlay] = useState(false);
 
     useEffect(() => {
         const handleRouteChange = () => {
-            setShowOverlay(null);
+            setShowOverlay(false);
         };
         router.events.on('routeChangeComplete', handleRouteChange);
         return () => router.events.off('routeChangeComplete', handleRouteChange);
     }, [router.events]);
 
-    useDisableScroll(showOverlay !== null)
+    useDisableScroll(showOverlay)
 
     return (
         <>
@@ -40,6 +43,9 @@ const Navigation: FunctionComponent<NavigationProps> = ({cover}) => {
                         {logoVertical}
                     </Link>
                     <Links />
+                    <button className={styles.menu} onClick={() => setShowOverlay(e => !e)}>
+                        Menu
+                    </button>
                 </div>
                 <SmallLinks />
             </div>
@@ -50,13 +56,18 @@ const Navigation: FunctionComponent<NavigationProps> = ({cover}) => {
                     <div className={styles.cover}>
                         <Figure image={cover} fullWidth={true}/>
                     </div>
+                    {description &&
+                        <div className={styles.description}>
+                            <BlockContent blocks={description[locale]} />
+                        </div>
+                    }
                 </div>
             }
 
-            <Overlay handleClose={() => setShowOverlay(null)} isOpen={showOverlay !== null}>
-                {showOverlay === 'menu' &&
-                    <NavigationOverlay/>
-                }
+            <Overlay handleClose={() => setShowOverlay(false)} isOpen={showOverlay}>
+                <div className={styles.overlayMenu}>
+                    <Links />
+                </div>
             </Overlay>
         </>
     );
@@ -64,13 +75,6 @@ const Navigation: FunctionComponent<NavigationProps> = ({cover}) => {
 
 export default Navigation;
 
-const NavigationOverlay: FunctionComponent = () => {
-    return (
-        <div>
-            Overlay
-        </div>
-    )
-}
 
 const Links: FunctionComponent = () => {
     const t = useTranslations('Navigation');
@@ -102,13 +106,13 @@ const Links: FunctionComponent = () => {
     )
 }
 
-const SmallLinks: FunctionComponent = () => {
+export const SmallLinks: FunctionComponent = () => {
     const router = useRouter();
     const t = useTranslations('Navigation');
 
     return (
         <div className={styles.smallLinks}>
-            <a href={"https://goout.net/cs/divadlo-3+kk/pzwidng/"} className={classNames([styles.smallLink])}>
+            <a href={"https://goout.net/cs/divadlo-3+kk/pzwidng/"} className={classNames([styles.smallLink, styles.tickets])}>
                 <p>{t('tickets')}</p>
             </a>
 

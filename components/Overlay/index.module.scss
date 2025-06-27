@@ -7,12 +7,14 @@
   right: 0;
   bottom: 0;
   z-index: 1000;
-  overflow-x: scroll;
+  height: 100%;
+  padding: 30px;
 
-  background: rgba(255, 255, 255, 1);
-  padding: 0 20px;
+  background: rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(20px);
   display: flex;
   flex-direction: column;
+  gap: 10px;
 
   &.scrollable{
     overflow-y: scroll;
@@ -21,8 +23,11 @@
     overflow-y: hidden;
   }
 
-  @media (max-width: $breakpoint-md-max) {
-    padding: 0 16px;
+  .close{
+    @include bigLink;
+    border: none;
+    cursor: pointer;
+    align-self: center;
   }
 }
 

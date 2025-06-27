@@ -18,21 +18,15 @@
       display: flex;
       gap: 10px;
       a {
-        @include shadowBox;
-        border-radius: 25px;
-        text-decoration: none;
-        display: block;
-        background: white;
+        @include smallLink;
         height: 80px;
         width: 50px;
         line-height: 80px;
-        text-align: center;
       }
     }
     .telMail{
       @include shadowBox;
       border-radius: 25px;
-      text-decoration: underline;
       background: white;
       padding: 20px 30px;
       text-align: center;

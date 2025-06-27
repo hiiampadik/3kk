@@ -1,7 +1,7 @@
 @import '_variables.scss';
 
 .homepageContainer {
-  margin: 10vw 30px;
+  @include margin;
   h1 {
     @include headline;
     position: sticky;

@@ -1,66 +1,77 @@
 @import '_variables.scss';
 
 .aboutContainer {
-  padding: 30px;
+  @include margin;
   max-width: 1000px;
   min-height: 300px;
   h1, h2 {
     @include headline
   }
   .aboutParagraph {
-    margin: 40px 0;
+    @include marginHorizontal;
+
     column-count: 2;
     column-gap: 10px;
     orphans: 2;
     p {
       @include mono;
     }
-  }
-}
-
-.teamContainer {
-  margin: 40px 0;
-
-  .teamList {
-    margin-top: 40px;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    gap: 10px;
-    @include mono;
-  }
-
-  h3 {
-    margin: 20px 0 0;
-    @include mono;
-  }
-
-  p {
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-  }
-
-  .cover {
-    flex: 1 1 auto;
-    position: relative;
-    border-radius: 10px;
-    overflow: hidden;
-    max-height: calc(100vh - 200px);
-
-    img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
+    @media (max-width: $breakpoint-xs-max) {
+      column-count: 1;
     }
   }
-  .cover::after {
-    position: absolute;
-    content: '';
-    z-index: 1;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    @include shadowBox;
+
+  .teamContainer {
+    @include marginHorizontal;
+
+    .teamList {
+      @include marginHorizontal;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+      @media (max-width: $breakpoint-sm-max) {
+        grid-template-columns: 1fr 1fr 1fr;
+      }
+      @media (max-width: $breakpoint-xs-max) {
+        grid-template-columns: 1fr 1fr;
+      }
+      gap: 10px;
+      @include mono;
+    }
+
+    h3 {
+      margin: 20px 0 0;
+      @include mono;
+    }
+
+    p {
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .cover {
+      flex: 1 1 auto;
+      position: relative;
+      border-radius: 10px;
+      overflow: hidden;
+      max-height: calc(100vh - 200px);
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+    }
+    .cover::after {
+      position: absolute;
+      content: '';
+      z-index: 1;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      @include shadowBox;
+    }
   }
+
 }

@@ -37,7 +37,7 @@ const Navigation: FunctionComponent<NavigationProps> = ({cover, description}) =>
 
     return (
         <>
-            <div className={styles.navigationContainer}>
+            <nav className={styles.navigationContainer}>
                 <div className={styles.siteNavigation}>
                     <Link href={"/"} className={classNames([styles.link, styles.logo])}>
                         {logoVertical}
@@ -48,7 +48,7 @@ const Navigation: FunctionComponent<NavigationProps> = ({cover, description}) =>
                     </button>
                 </div>
                 <SmallLinks />
-            </div>
+            </nav>
 
 
             {cover &&

@@ -12,6 +12,32 @@ $breakpoint-xxl-min: 1400px;
 
 $gray: #F8F8F8;
 
+@mixin margin {
+  margin: 30px;
+  @media (max-width: $breakpoint-sm-max) {
+    margin: 20px;
+  }
+  @media (max-width: $breakpoint-xs-max) {
+    margin: 15px;
+  }
+}
+
+@mixin marginVertical {
+  margin: 0 30px;
+  @media (max-width: $breakpoint-sm-max) {
+    margin: 0 20px;
+  }
+  @media (max-width: $breakpoint-xs-max) {
+    margin: 0 15px;
+  }
+}
+
+@mixin marginHorizontal {
+  margin: 40px 0;
+  @media (max-width: $breakpoint-sm-max) {
+    margin: 20px 0;
+  }
+}
 
 @mixin shadowBox {
   box-shadow: inset 0 2px 7px rgba(0,0,0,0.4);
@@ -29,7 +55,7 @@ $gray: #F8F8F8;
   letter-spacing: -0.02em;
   line-height: 1.25em;
 
-  @media (max-width: $breakpoint-sm-max) {
+  @media (max-width: $breakpoint-md-max) {
     font-size: 40px;
   }
 }
@@ -61,7 +87,7 @@ $gray: #F8F8F8;
     }
   }
 
-  @media (max-width: $breakpoint-sm-max) {
+  @media (max-width: $breakpoint-md-max) {
     border-radius: 7px;
     padding: 0 25px;
     height: 70px;

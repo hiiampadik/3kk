@@ -1,7 +1,8 @@
 @import '_variables.scss';
 
 .contactContainer {
-  padding: 30px;
+  @include margin;
+
   max-width: 1000px;
   min-height: 300px;
   h1, h2 {
@@ -11,15 +12,18 @@
     @include mono
   }
 
-
-}
-
-.addressContainer {
-  margin: 40px 0;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px;
-  p {
-    @include mono;
+  .addressContainer {
+    @include marginHorizontal;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    p {
+      @include mono;
+    }
+    @media (max-width: $breakpoint-xs-max) {
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
   }
 }
+

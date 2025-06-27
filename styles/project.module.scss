@@ -1,14 +1,14 @@
 @import '_variables.scss';
 
 .projectContainer {
-  padding: 30px;
+  @include margin;
   max-width: 1000px;
   min-height: 300px;
   h1 {
     @include headline
   }
   .projectDetail {
-    margin: 40px 0;
+    @include marginHorizontal;
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 10px;

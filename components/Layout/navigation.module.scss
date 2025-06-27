@@ -1,7 +1,7 @@
 @import '../../styles/variables';
 
 .content {
-  margin-top: 40px
+  @include marginHorizontal
 }
 
 .link, .menu {
@@ -29,7 +29,8 @@
 }
 
 .navigationContainer {
-  padding: 30px 30px 10px;
+  @include margin;
+  margin-bottom: 10px !important;
   display: flex;
   justify-content: space-between;
   gap: 10px;
@@ -54,7 +55,7 @@
     cursor: pointer;
   }
 
-  @media (max-width: 1000px) {
+  @media (max-width: $breakpoint-md-max) {
     .link1, .link2, .link3, .inner {
       display: none;
     }
@@ -70,7 +71,7 @@
   gap: 6px;
   height: 100px;
   justify-content: stretch;
-  flex: 0 0 130px;
+  flex: 0 0 120px;
 
   .smallLink {
     @include smallLink;
@@ -82,7 +83,7 @@
     }
   }
 
-  @media (max-width: $breakpoint-sm-max) {
+  @media (max-width: $breakpoint-md-max) {
     height: 70px;
     flex: 0 0 45px;
     .tickets {
@@ -93,7 +94,7 @@
 
 
 .coverContainer {
-  padding: 0 30px;
+  @include marginVertical;
   display: flex;
   align-items: stretch;
   gap: 10px;

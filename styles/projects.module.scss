@@ -8,8 +8,10 @@
     @include headline
   }
   .filterContainer{
-    margin-top: 40px;
+    padding: 0;
+    @include marginVertical;
     display: flex;
+    flex-wrap: wrap;
     gap: 10px;
     button {
       padding: 15px;
@@ -21,14 +23,23 @@
       &.selected{
         border: 1px black solid;
       }
+      @media (max-width: $breakpoint-xs-max) {
+        padding: 5px 6px;
+        letter-spacing: -0.2px;
+      }
     }
+
   }
   .projectsList {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 10px;
-    padding: 40px 0;
+    padding: 0;
     margin: 0;
+    @media (max-width: $breakpoint-xs-max) {
+      grid-template-columns: 1fr;
+    }
+
     li {
       list-style: none;
       a {

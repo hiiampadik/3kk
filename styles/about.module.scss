@@ -8,7 +8,7 @@
     @include headline
   }
   .aboutParagraph {
-    @include marginHorizontal;
+    @include marginVertical;
 
     column-count: 2;
     column-gap: 10px;
@@ -22,10 +22,10 @@
   }
 
   .teamContainer {
-    @include marginHorizontal;
+    @include marginVertical;
 
     .teamList {
-      @include marginHorizontal;
+      @include marginVertical;
       display: grid;
       grid-template-columns: 1fr 1fr 1fr 1fr;
       @media (max-width: $breakpoint-sm-max) {

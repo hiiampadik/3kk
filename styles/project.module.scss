@@ -8,10 +8,14 @@
     @include headline
   }
   .projectDetail {
-    @include marginHorizontal;
+    @include marginVertical;
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 10px;
+
+    @media (max-width: $breakpoint-xs-max) {
+      grid-template-columns: 1fr;
+    }
 
     .team {
       @include mono;

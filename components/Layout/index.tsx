@@ -7,6 +7,8 @@ import {classNames} from '@/components/utils/classNames';
 import {useRouter} from 'next/router';
 import {useLocale} from '@/components/utils/useLocale';
 import {LocalizedRichParagraph} from '@/api/sanity.types';
+import Figure from '@/components/Sanity/Figure';
+import BlockContent from '@/components/Sanity/BlockContent';
 
 export const WEBSITE_NAME = '3+KK'
 export const WEBSITE_DESCRIPTION = "We are a progressive theatre"
@@ -137,7 +139,20 @@ const Layout: FunctionComponent<PropsWithChildren<LayoutProps>> = (
             />
 
             <main>
-                <Navigation cover={cover} description={description}/>
+                <Navigation/>
+
+                {cover &&
+                    <div className={styles.coverContainer}>
+                        <div className={styles.cover}>
+                            <Figure image={cover} fullWidth={true}/>
+                        </div>
+                        {description &&
+                            <div className={styles.description}>
+                                <BlockContent blocks={description[locale]} />
+                            </div>
+                        }
+                    </div>
+                }
                 <div className={classNames([styles.content, loading ? styles.loading : styles.loaded])}>
                     {children}
                 </div>

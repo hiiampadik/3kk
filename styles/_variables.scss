@@ -22,7 +22,7 @@ $gray: #F8F8F8;
   }
 }
 
-@mixin marginVertical {
+@mixin marginHorizontal {
   margin: 0 30px;
   @media (max-width: $breakpoint-sm-max) {
     margin: 0 20px;
@@ -32,7 +32,7 @@ $gray: #F8F8F8;
   }
 }
 
-@mixin marginHorizontal {
+@mixin marginVertical {
   margin: 40px 0;
   @media (max-width: $breakpoint-sm-max) {
     margin: 20px 0;

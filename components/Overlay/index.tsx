@@ -4,7 +4,6 @@ import {Overlay2} from '@blueprintjs/core';
 import styles from './index.module.scss';
 import {classNames} from '@/components/utils/classNames';
 import {useTranslations} from 'next-intl';
-import Link from 'next/link';
 
 interface OverlayProps {
     readonly isOpen?: boolean
@@ -27,26 +26,7 @@ const Overlay: FunctionComponent<OverlayProps> = ({isOpen = true, scrollable = f
                             {t('close')}
                         </button>
                         <div className={styles.inner}>
-                            <Link
-                                href={"/projects"}
-                                className={classNames([styles.link, styles.link1])}
-                                prefetch={false}>
-                                {t('repertoire')}
-                            </Link>
-                            <Link
-                                href={"/about"}
-                                className={classNames([styles.link, styles.link2])}
-                                prefetch={false}
-                            >
-                                {t('about')}
-                            </Link>
-                            <Link
-                                href={"/contact"}
-                                className={classNames([styles.link, styles.link3])}
-                                prefetch={false}
-                            >
-                                {t('contact')}
-                            </Link>
+
                         </div>
                     </div>
                 </Overlay2>

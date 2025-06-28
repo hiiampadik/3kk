@@ -24,18 +24,30 @@
       display: flex;
       gap: 10px;
       a {
-        @include smallLink;
+        @include outlinedLink;
         height: 80px;
-        width: 50px;
+        width: 42px;
         line-height: 80px;
       }
     }
     .telMail{
-      @include shadowBox;
-      border-radius: 25px;
-      background: white;
+      @include outlinedLink;
+      text-decoration: none !important;
+      flex-direction: column;
+      gap: 0;
+      height: 80px;
+      border-radius: 20px;
       padding: 20px 30px;
-      text-align: center;
+
+
+      a {
+        text-decoration: none;
+        @media (hover: hover) {
+          &:hover {
+            @include underline
+          }
+        }
+      }
     }
   }
 

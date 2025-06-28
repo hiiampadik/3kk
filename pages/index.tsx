@@ -45,9 +45,15 @@ export default function Home({data}: {data: HomepageType}) {
                                     </div>
                                 </div>
                             </Link>
+                            <div className={styles.externalLinks}>
+                            {event.facebook &&
+                                <a href={event.facebook} className={styles.fb}>Fb</a>
+                            }
                             {event.ticket &&
                                 <a href={event.ticket} className={styles.tickets}>{t('tickets')}</a>
                             }
+                            </div>
+
                         </li>
                     ))}
                 </ul>

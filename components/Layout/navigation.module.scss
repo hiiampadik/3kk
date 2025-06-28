@@ -5,170 +5,118 @@
 }
 
 
-
-
-
-.navigationDevice {
+.navigationContainer {
   display: flex;
-  gap: 10px;
+  gap: 20px;
   justify-content: space-between;
-
-  .navigationInner, .inner {
-    display: flex;
-    gap: 10px;
-    flex-wrap: wrap;
+  @include margin;
+  margin-bottom: 10px !important;
+  @media (max-width: $breakpoint-sm-max) {
+    gap: 6px;
   }
 
-  .menu {
-    border: none;
-    cursor: pointer;
-  }
-  .link {
-    @include bigLink;
-  }
-  .link1 {
-    border-radius: 60px;
-    background: #F1E34C;
-  }
-  .link2 {
-    border-radius: 10px;
-    background: #ED8F7B
-  }
-  .link3 {
-    border-radius: 60px;
-    background: #2B57FF;
+  .navLeft {
+    .navLeftInner {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      @media (max-width: $breakpoint-sm-max) {
+        gap: 6px;
+        max-width: 500px;
+        padding-right: 45px;
+      }
+    }
+    .navLeftLinkWrap {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      @media (max-width: $breakpoint-sm-max) {
+        gap: 6px;
+      }
+    }
+    .link {
+      @include menuLinkBig;
+    }
+    .logo {
+      align-items: stretch;
+      img {
+        width: 6em;
+      }
+    }
+    .link1 {
+      border-radius: 60px;
+      background: #F1E34C;
+    }
+    .link2 {
+      background: #ED8F7B
+    }
+    .link3 {
+      border-radius: 60px;
+      background: #2B57FF;
+    }
+
   }
 
-  .smallLinks {
+  .navRight {
     display: flex;
     flex-direction: column;
     gap: 6px;
-    height: 100px;
-    justify-content: stretch;
-    flex: 0 0 120px;
+    min-height: 170px;
+
+    @media (max-width: $breakpoint-sm-max) {
+      position: absolute;
+      right: 15px;
+    }
 
     .smallLink {
-      @include smallLink;
-      flex: 1 1 auto;
+      @include mono;
 
-      p{
-        text-align: center;
-        @include mono;
+      text-decoration: none;
+      border-radius: 30px;
+      width: 40px;
+      border: 1px black solid;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      &.language{
+        height: 40px;
+        transition: 0.2s;
+        @media (hover: hover) {
+          &:hover {
+            transform: rotate(90deg);
+          }
+        }
+      }
+      &.tickets{
+        writing-mode: vertical-rl;
+        text-orientation: mixed;
+        padding: 18px 0;
+        @media (max-width: $breakpoint-sm-max) {
+          display: none;
+        }
+        @media (hover: hover) {
+          &:hover {
+            @include underline
+          }
+        }
       }
     }
-
-    @media (max-width: $breakpoint-md-max) {
-      height: 70px;
-      flex: 0 0 45px;
-    }
   }
 }
-
-
-
-// DEVICES -------------------------
-
-
-.navigationContainer{
-  @include margin;
-  margin-bottom: 10px !important;
-
-  @media (min-width: $breakpoint-lg-min) {
-    .desktop{
-      display: flex;
-    }
-    .tablet, .mobile{
-      display: none;
-    }
-  }
-  @media (max-width: $breakpoint-md-max) {
-    .tablet{
-      display: flex;
-    }
-    .desktop, .mobile{
-      display: none;
-    }
-  }
-  @media (max-width: $breakpoint-xs-max) {
-    .mobile{
-      display: flex;
-    }
-    .tablet, .desktop{
-      display: none;
-    }
-  }
-}
-
-
-// MOBILE
-.mobile {
-  align-items: center;
-  gap: 15px;
-  .menu {
-    background: none;
-    @include mono;
-    height: 30px;
-    width: 46px;
-    text-align: left;
-  }
-
-  .language {
-    text-align: right;
-    height: 30px;
-    padding: 0 5px;
-    p {
-      display: block;
-      @include mono;
-      line-height: 30px;
-    }
-    text-decoration: none;
-  }
-
-  .logoSimple {
-    align-items: center;
-    margin-right: auto;
-    margin-left: 5px;
-    svg {
-      height: 30px;
-      width: auto;
-      display: block
-    }
-  }
-}
-
-// TABLET
-.tablet, .desktop {
-  .menu {
-    @include bigLink;
-    background: #F1E34C;
-  }
-
-  .logo {
-    border-radius: 10px;
-    display: flex;
-    align-items: center;
-    svg {
-      width: 6em;
-    }
-  }
-}
-
-
-
-
-
-
-
 
 
 .coverContainer {
-  @include marginHorizontal;
+  margin-top: 10px;
   display: flex;
   align-items: stretch;
-  gap: 10px;
+  gap: 20px;
   min-height: 50vh;
 
-
+  @media (max-width: $breakpoint-sm-max) {
+    margin-top: 6px;
+    gap: 10px;
+  }
   .cover {
     position: relative;
     border-radius: 10px;
@@ -198,7 +146,11 @@
     @include mono;
     align-self: flex-end;
     flex: 1 0 250px;
+    @media (max-width: $breakpoint-md-max) {
+      flex: 1 0 200px;
+    }
   }
+
 
   @media (max-width: $breakpoint-sm-max) {
     flex-direction: column;

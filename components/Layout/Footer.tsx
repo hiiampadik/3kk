@@ -1,10 +1,10 @@
 import React, {FunctionComponent} from 'react';
 import styles from './footer.module.scss'
 import {useTranslations} from 'next-intl';
-import logo1 from './partners/kaznice.png'
-import logo2 from './partners/teren_logo_A.svg'
-import logo3 from './partners/andcrblack-7.jpg'
-import logo4 from './partners/bnd.svg'
+import logo1 from '@/public/logos/kaznice.png'
+import logo2 from '@/public/logos/teren_logo_A.svg'
+import logo3 from '@/public/logos/andcrblack-7.jpg'
+import logo4 from '@/public/logos/bnd.svg'
 
 const Footer: FunctionComponent = () => {
 
@@ -18,7 +18,7 @@ const Footer: FunctionComponent = () => {
                     <a href={'https://www.instagram.com/3pluskk/'} target={'_blank'}>IG</a>
                 </div>
                 <div className={styles.telMail}>
-                    <a href="mailto:tripluskk@gmail.com">tripluskk@gmail.com</a><br/>
+                    <a href="mailto:tripluskk@gmail.com">tripluskk@gmail.com</a>
                     <a href="tel:+420777414563">(+420) 777 414 563</a>
                 </div>
             </div>

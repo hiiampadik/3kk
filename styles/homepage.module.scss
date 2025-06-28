@@ -70,14 +70,17 @@
   }
 }
 
-.tickets {
-  @media (min-width: $breakpoint-lg-min) {
-    @include bigLink
+.externalLinks {
+  display: flex;
+  gap: 10px;
+  .tickets, .fb {
+    @media (min-width: $breakpoint-xxl-min) {
+      @include menuLinkBig
+    }
+    @media (max-width: $breakpoint-xl-max) {
+      align-self: flex-start;
+      @include outlinedLink;
+      height: 40px;
+    }
   }
-  @media (max-width: $breakpoint-md-max) {
-    @include smallLink;
-    align-self: flex-start;
-    padding: 10px 20px;
-  }
-
 }

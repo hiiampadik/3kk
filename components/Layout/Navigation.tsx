@@ -7,12 +7,22 @@ import {useDisableScroll} from '@/components/utils/useDisableScroll';
 import Link from 'next/link';
 import styles from './navigation.module.scss';
 import {classNames} from '@/components/utils/classNames';
-import {logoVertical, logoVerticalSimple} from '@/components/Layout/LogoVertical';
 import {useTranslations} from 'next-intl';
 import {useLocale} from '@/components/utils/useLocale';
+import logo from '@/public/logos/2.svg';
+import logoSimple from '@/public/logos/3.svg';
+import Figure from '@/components/Sanity/Figure';
+import BlockContent from '@/components/Sanity/BlockContent';
+import {LocalizedRichParagraph} from '@/api/sanity.types';
 
 
-const Navigation: FunctionComponent = () => {
+interface Props {
+    readonly cover?: { asset?: { _ref: string }};
+    readonly description?: LocalizedRichParagraph
+}
+
+
+const Navigation: FunctionComponent<Props> = ({cover, description}) => {
     const router = useRouter();
     const locale = useLocale()
     const t = useTranslations('Navigation');
@@ -31,115 +41,69 @@ const Navigation: FunctionComponent = () => {
 
     return (
         <>
-            <nav className={styles.navigationContainer}>
-                <div className={classNames([styles.navigationDevice, styles.desktop])}>
-                    <div className={styles.navigationInner}>
-                        <Link href={"/"} className={classNames([styles.link, styles.logo])}>{logoVertical}</Link>
-                        <Link
-                            href={"/projects"}
-                            className={classNames([styles.link, styles.link1])}
-                            prefetch={false}>
-                            {t('repertoire')}
-                        </Link>
-                        <div className={styles.inner}>
-                            <Link
-                                href={"/about"}
-                                className={classNames([styles.link, styles.link2])}
-                                prefetch={false}
-                            >
-                                {t('about')}
+                <div className={styles.navigationContainer}>
+                    <div className={styles.navLeft}>
+                        <nav className={styles.navLeftInner}>
+                            <Link href={"/"} className={classNames([styles.link, styles.logo])}>
+                                <img src={logo.src} className={styles.logoComplex}/>
                             </Link>
                             <Link
-                                href={"/contact"}
-                                className={classNames([styles.link, styles.link3])}
-                                prefetch={false}
-                            >
-                                {t('contact')}
+                                href={"/projects"}
+                                className={classNames([styles.link, styles.link1])}
+                                prefetch={false}>
+                                <p>{t('repertoire')}</p>
                             </Link>
-                        </div>
+                            <div className={styles.navLeftLinkWrap}>
+                                <Link
+                                    href={"/about"}
+                                    className={classNames([styles.link, styles.link2])}
+                                    prefetch={false}
+                                >
+                                    <p>{t('about')}</p>
+                                </Link>
+                                <Link
+                                    href={"/contact"}
+                                    className={classNames([styles.link, styles.link3])}
+                                    prefetch={false}
+                                >
+                                    <p>{t('contact')}</p>
+                                </Link>
+                            </div>
+                        </nav>
+
+                        {cover &&
+                            <div className={styles.coverContainer}>
+                                <div className={styles.cover}>
+                                    <Figure image={cover} fullWidth={true}/>
+                                </div>
+                                {description &&
+                                    <div className={styles.description}>
+                                        <BlockContent blocks={description[locale]} />
+                                    </div>
+                                }
+                            </div>
+                        }
                     </div>
 
-                    <div className={styles.smallLinks}>
+                    <div className={styles.navRight}>
+                        <Link
+                            href={router.asPath}
+                            locale={router.locale === "cs" ? "en" : "cs"}
+                            className={classNames([styles.smallLink, styles.language])}
+                            prefetch={false}
+                        >
+                            <p>{router.locale === "cs" ? "En" : "Cz"}</p>
+                        </Link>
                         <a href={"https://goout.net/cs/divadlo-3+kk/pzwidng/"}
                            className={classNames([styles.smallLink, styles.tickets])}>
                             <p>{t('tickets')}</p>
                         </a>
-
-                        <Link
-                            href={router.asPath}
-                            locale={router.locale === "cs" ? "en" : "cs"}
-                            className={classNames([styles.smallLink])}
-                            prefetch={false}
-                        >
-                            <p>{router.locale === "cs" ? "En" : "Cz"}</p>
-                        </Link>
                     </div>
                 </div>
-
-                <div className={classNames([styles.navigationDevice, styles.tablet])}>
-                    <div className={styles.navigationInner}>
-                        <Link href={"/"} className={classNames([styles.link, styles.logo])}>{logoVertical}</Link>
-                        <button className={styles.menu} onClick={() => setShowOverlay(e => !e)}>Menu</button>
-                    </div>
-                    <div className={styles.smallLinks}>
-                        <Link
-                            href={router.asPath}
-                            locale={router.locale === "cs" ? "en" : "cs"}
-                            className={classNames([styles.smallLink])}
-                            prefetch={false}
-                        >
-                            <p>{router.locale === "cs" ? "En" : "Cz"}</p>
-                        </Link>
-                    </div>
-                </div>
-
-
-                <div className={classNames([styles.navigationDevice, styles.mobile])}>
-                    <Link href={"/"}
-                          className={styles.logoSimple}>{logoVerticalSimple}</Link>
-                    <button className={styles.menu} onClick={() => setShowOverlay(e => !e)}>Menu</button>
-
-                    <Link
-                        href={router.asPath}
-                        locale={router.locale === "cs" ? "en" : "cs"}
-                        prefetch={false}
-                        className={styles.language}
-                    >
-                        <p>{router.locale === "cs" ? "En" : "Cz"}</p>
-                    </Link>
-                </div>
-
-
-            </nav>
-
-
             <Overlay handleClose={() => setShowOverlay(false)} isOpen={showOverlay} />
         </>
     );
 };
 
 export default Navigation;
-
-
-export const SmallLinks: FunctionComponent = () => {
-    const router = useRouter();
-    const t = useTranslations('Navigation');
-
-    return (
-        <div className={styles.smallLinks}>
-            <a href={"https://goout.net/cs/divadlo-3+kk/pzwidng/"} className={classNames([styles.smallLink, styles.tickets])}>
-                <p>{t('tickets')}</p>
-            </a>
-
-            <Link
-                href={router.asPath}
-                locale={router.locale === "cs" ? "en" : "cs"}
-                className={classNames([styles.smallLink])}
-                prefetch={false}
-            >
-                <p>{router.locale === "cs" ? "En" : "Cz"}</p>
-            </Link>
-        </div>
-    )
-}
 

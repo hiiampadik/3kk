@@ -1,19 +1,30 @@
 import React from "react";
 import {GetStaticPropsContext} from 'next';
-import {sanityFetch} from '@/sanity/client';
+import client, {sanityFetch} from '@/sanity/client';
 import Layout from '@/components/Layout';
 import {Project as ProjectSanity} from '../../api/sanity.types'
 import {QUERY_ALL_PROJECTS_SLUGS, QUERY_PROJECT_DETAILS} from '@/api/queries';
 import styles from '../../styles/project.module.scss'
 import {useLocale} from '@/components/utils/useLocale';
 import BlockContent from '@/components/Sanity/BlockContent';
+import imageUrlBuilder from '@sanity/image-url';
+import {getImageDimensions} from '@sanity/asset-utils';
 
 export default function Project({data}: {data: ProjectSanity}) {
     const locale = useLocale()
+    const builder = imageUrlBuilder(client);
+    const coverDimensions = data.cover.asset && getImageDimensions(data.cover.asset)
+
     return (
         <Layout
-            title={'todo'}
+            title={data.title[locale]}
             cover={data.cover}
+            seo={data.seo}
+            image={{
+                url: builder.image(data.cover).auto("format").width(800).quality(60).url(),
+                height: coverDimensions?.height.toString() ?? '',
+                width: coverDimensions?.width.toString() ?? '',
+            }}
         >
             <div className={styles.projectContainer}>
                 <h1>{data.title[locale]}</h1>

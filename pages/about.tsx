@@ -15,7 +15,7 @@ export default function About({data}: {data: AboutSanity}) {
     const locale = useLocale()
 
     return (
-        <Layout>
+        <Layout seo={data.seo} title={t('about')}>
             <div className={styles.aboutContainer}>
                 <h1>{t('about')}</h1>
                 <div className={styles.aboutParagraph}>

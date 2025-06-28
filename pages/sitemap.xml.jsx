@@ -1,4 +1,4 @@
-import {QUERY_ALL_SLUGS} from "../api/queries.ts";
+import {QUERY_ALL_PROJECTS_SLUGS} from "../api/queries.ts";
 import client from "../sanity/client.ts";
 import {WEBSITE_URL} from "../components/Layout/index.tsx";
 
@@ -15,7 +15,7 @@ function createXmlEntry(url) {
 
 export async function getServerSideProps({ res }) {
     const baseUrl = WEBSITE_URL;
-    const urls = await client.fetch(QUERY_ALL_SLUGS);
+    const urls = await client.fetch(QUERY_ALL_PROJECTS_SLUGS);
     const slugs = []
 
     slugs.push(`
@@ -25,19 +25,7 @@ export async function getServerSideProps({ res }) {
     `)
 
     slugs.push(`
-        <loc>${baseUrl}artists</loc>
-        <changefreq>weekly</changefreq>
-        <priority>0.9</priority>
-    `)
-
-    slugs.push(`
-        <loc>${baseUrl}exhibitions</loc>
-        <changefreq>weekly</changefreq>
-        <priority>0.9</priority>
-    `)
-
-    slugs.push(`
-        <loc>${baseUrl}fairs</loc>
+        <loc>${baseUrl}projects</loc>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
     `)
@@ -48,12 +36,15 @@ export async function getServerSideProps({ res }) {
         <priority>0.9</priority>
     `)
 
+    slugs.push(`
+        <loc>${baseUrl}contact</loc>
+        <changefreq>monthly</changefreq>
+        <priority>0.9</priority>
+    `)
+
     const locations = [
         ...slugs,
-        ...urls.exhibitions.map((slug) => createXmlEntry(`${baseUrl}exhibition/${slug.slug}`)),
-        ...urls.fairs.map((slug) => createXmlEntry(`${baseUrl}fair/${slug.slug}`)),
-        ...urls.artistsEvents.map((slug) => createXmlEntry(`${baseUrl}artists-event/${slug.slug}`)),
-        ...urls.artists.map((slug) => createXmlEntry(`${baseUrl}artist/${slug.slug}`)),
+        ...urls.map((slug) => createXmlEntry(`${baseUrl}projects/${slug}`)),
     ];
 
     const createSitemap = () => `<?xml version="1.0" encoding="UTF-8"?>

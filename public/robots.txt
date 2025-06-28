@@ -3,7 +3,7 @@ User-agent: *
 Allow: /
 
 # Host
-Host: https://www.tripluskk.cz
+Host: https://www.tripluskk.com
 
 # Sitemaps
-Sitemap: https://www.tripluskk.cz/sitemap.xml
+Sitemap: https://www.tripluskk.com/sitemap.xml

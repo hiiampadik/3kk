@@ -13,6 +13,12 @@
  */
 
 // Source: schema.json
+export type LocalizedText = {
+  _type: 'localizedText'
+  cs?: string
+  en?: string
+}
+
 export type Contact = {
   _id: string
   _type: 'contact'
@@ -21,6 +27,7 @@ export type Contact = {
   _rev: string
   address: LocalizedRichParagraph
   contacts: LocalizedRichParagraph
+  seo: Seo
 }
 
 export type About = {
@@ -47,6 +54,7 @@ export type About = {
     role: LocalizedString
     _key: string
   }>
+  seo: Seo
 }
 
 export type Homepage = {
@@ -83,6 +91,7 @@ export type Homepage = {
     _type: 'event'
     _key: string
   }>
+  seo: Seo
 }
 
 export type Project = {
@@ -130,6 +139,13 @@ export type Project = {
     alt?: string
     _key: string
   }>
+  seo: Seo
+}
+
+export type Seo = {
+  _type: 'seo'
+  title: LocalizedString
+  paragraph?: LocalizedText
 }
 
 export type LocalizedRichParagraph = {
@@ -369,10 +385,12 @@ export type SanityAssetSourceData = {
 }
 
 export type AllSanitySchemaTypes =
+    | LocalizedText
     | Contact
     | About
     | Homepage
     | Project
+    | Seo
     | LocalizedRichParagraph
     | LocalizedString
     | GalleryArray

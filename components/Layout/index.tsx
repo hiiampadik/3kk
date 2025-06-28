@@ -6,13 +6,20 @@ import styles from './navigation.module.scss'
 import {classNames} from '@/components/utils/classNames';
 import {useRouter} from 'next/router';
 import {useLocale} from '@/components/utils/useLocale';
-import {LocalizedRichParagraph} from '@/api/sanity.types';
+import {LocalizedRichParagraph, LocalizedString, LocalizedText} from '@/api/sanity.types';
 
-export const WEBSITE_NAME = '3+KK'
-export const WEBSITE_DESCRIPTION = "We are a progressive theatre"
-export const WEBSITE_URL = 'https://www.tripluskk.cz/'
+export const WEBSITE_NAME_CZ = 'Divadlo 3+KK'
+export const WEBSITE_NAME_EN = 'Theatre 3+KK'
+export const WEBSITE_DESCRIPTION_CZ = "Kritické divadlo do kritické doby."
+export const WEBSITE_DESCRIPTION_EN = "Critical theatre for a critical time."
+export const WEBSITE_URL = 'https://www.tripluskk.com'
 
 interface LayoutProps {
+    readonly seo?: {
+        _type: 'seo'
+        title: LocalizedString
+        paragraph?: LocalizedText
+    }
     readonly title?: string
     readonly loading?: boolean;
     readonly cover?: { asset?: { _ref: string }};
@@ -30,20 +37,19 @@ const Layout: FunctionComponent<PropsWithChildren<LayoutProps>> = (
         loading = undefined,
         image,
         cover,
-        description
+        description,
+        seo
     }) => {
 
-    const pageTitle = title ? title + ` | ${WEBSITE_NAME}` : WEBSITE_NAME
     const router = useRouter()
     const locale = useLocale()
-    const getLocale = () => {
-        switch (locale) {
-            case 'en':
-                return 'en_US';  // English locale
-            case 'cs':
-                return 'cs_CZ';  // Czech locale
-        }
-    };
+
+    const websiteDescription = locale === 'cs' ? WEBSITE_DESCRIPTION_CZ : WEBSITE_DESCRIPTION_EN
+    const websiteName = locale === 'cs' ? WEBSITE_NAME_CZ : WEBSITE_NAME_EN
+    const pageTitle = title ? title + ` | ${websiteName}` : websiteName
+
+    const seoPageTitle = seo?.title[locale] ?? pageTitle
+    const seoPageDescription = seo?.paragraph?.[locale] ?? websiteDescription
 
     const currentUrl = WEBSITE_URL + router.asPath;
 
@@ -53,7 +59,7 @@ const Layout: FunctionComponent<PropsWithChildren<LayoutProps>> = (
             {
                 "@type":"Organization",
                 "@id": WEBSITE_URL + "#organization",
-                "name":WEBSITE_NAME,
+                "name":websiteName,
                 "url": WEBSITE_URL,
                 "sameAs":["https://www.facebook.com/3pluskk","https://www.instagram.com/3pluskk"]
             },
@@ -61,19 +67,32 @@ const Layout: FunctionComponent<PropsWithChildren<LayoutProps>> = (
                 "@type":"WebSite",
                 "@id": WEBSITE_URL + "#website",
                 "url":WEBSITE_URL,
-                "name":WEBSITE_NAME,
+                "name":websiteName,
                 "publisher":{"@id": WEBSITE_URL + "#organization"},
-                'description': WEBSITE_DESCRIPTION
+                'description': websiteDescription
             },
             {
                 '@type': 'WebPage',
                 "@id": currentUrl + "#website",
                 "url": currentUrl,
-                'name': pageTitle,
-                'description': WEBSITE_DESCRIPTION
+                'name': seoPageTitle,
+                'description': seoPageDescription,
+                'inLanguage': locale,
+                'primaryImageOfPage': {
+                    '@type': 'ImageObject',
+                    'url': image?.url ?? `${WEBSITE_URL}/favicon/web-app-manifest-512x512.png`,
+                    'width': image?.width ?? '512',
+                    'height': image?.height ?? '512'
+                }
             }
         ]
     }
+
+    const alternateUrls = {
+        cs: router.asPath.replace(/^\/en/, '') || '/',
+        en: '/en' + (router.asPath.replace(/^\/en/, '') || '/'),
+    }
+
 
     return (
         <>
@@ -82,18 +101,25 @@ const Layout: FunctionComponent<PropsWithChildren<LayoutProps>> = (
 
                 <meta name="viewport" content="width=device-width, initial-scale=1"/>
                 <meta name="keywords"
-                      content="TODO"/>
-                <meta name="description" content={WEBSITE_DESCRIPTION}/>
+                      content="divadlo, kritické divadlo, 3+kk, theatre 3+kk, site-specific, kultura, Brno, Praha"/>
+                <meta name="description" content={websiteDescription}/>
                 <meta name="robots" content="index, follow"/>
                 <meta charSet="utf-8"/>
+                <meta name="theme-color" content="#000000"/>
 
-
-                <meta property="og:site_name" content={WEBSITE_NAME}/>
-                <meta property="og:locale" content={getLocale()}/>
-                <meta property="og:title" content={title ?? WEBSITE_NAME}/>
-                <meta property="og:description" content={WEBSITE_DESCRIPTION}/>
+                <meta property="og:site_name" content={websiteName}/>
+                <meta property="og:locale" content={locale}/>
+                <meta property="og:title" content={seoPageTitle}/>
+                <meta property="og:description" content={seoPageDescription}/>
                 <meta property="og:type" content="website"/>
                 <meta property="og:url" content={currentUrl}/>
+
+                <link rel="alternate" href={WEBSITE_URL + alternateUrls.cs} hrefLang="cs"/>
+                <link rel="alternate" href={WEBSITE_URL + alternateUrls.en} hrefLang="en"/>
+                <link rel="alternate" href={WEBSITE_URL} hrefLang="x-default"/>
+
+                <link rel="canonical" href={currentUrl}/>
+
 
                 {image ?
                     <>
@@ -109,12 +135,12 @@ const Layout: FunctionComponent<PropsWithChildren<LayoutProps>> = (
                     </>
                     :
                     <>
-                        <meta property="og:image" content={WEBSITE_URL + 'favicon/web-app-manifest-512x512.png'}/>
+                        <meta property="og:image" content={WEBSITE_URL + '/favicon/web-app-manifest-512x512.png'}/>
                         <meta property="og:image:type" content="image/png"/>
                         <meta property="og:image:width" content={'512'}/>
                         <meta property="og:image:height" content={'512'}/>
 
-                        <meta name="twitter:image" content={WEBSITE_URL + 'favicon/web-app-manifest-512x512.png'}/>
+                        <meta name="twitter:image" content={WEBSITE_URL + '/favicon/web-app-manifest-512x512.png'}/>
                         <meta name="twitter:image:type" content="image/png"/>
                         <meta name="twitter:image:width" content={'512'}/>
                         <meta name="twitter:image:height" content={'512'}/>
@@ -123,12 +149,15 @@ const Layout: FunctionComponent<PropsWithChildren<LayoutProps>> = (
                 }
 
                 <meta name="twitter:card" content="summary_large_image"/>
-                <meta name="twitter:title" content={title ? title + ` | ${WEBSITE_NAME}` : WEBSITE_NAME}/>
-                <meta name="twitter:description" content={WEBSITE_DESCRIPTION}/>
+                <meta name="twitter:title" content={seoPageTitle}/>
+                <meta name="twitter:description" content={seoPageDescription}/>
 
-                {/*TODO Icons */}
+                <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png"/>
+                <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png"/>
+                <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png"/>
+                <link rel="manifest" href="/favicon/site.webmanifest"/>
 
-                <meta name="apple-mobile-web-app-title" content={WEBSITE_NAME}/>
+                <meta name="apple-mobile-web-app-title" content={websiteName}/>
             </Head>
 
             <script

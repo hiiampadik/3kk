@@ -3,7 +3,7 @@ import {
     internalGroqTypeReferenceTo, LocalizedRichParagraph,
     LocalizedString,
     SanityImageCrop,
-    SanityImageHotspot,
+    SanityImageHotspot, Seo,
     Slug
 } from '@/api/sanity.types';
 
@@ -54,4 +54,5 @@ export type Homepage = {
         _type: 'event'
         _key: string
     }>
+    seo: Seo
 }

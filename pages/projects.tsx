@@ -21,7 +21,7 @@ export default function Projects({data}: {data: ProjectSanity[]}) {
     }, [filter])
 
     return (
-        <Layout>
+        <Layout title={t('repertoire')}>
             <div className={styles.projectsContainer}>
                 <h1>{t('repertoire')}</h1>
                 <div className={styles.filterContainer}>

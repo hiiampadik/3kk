@@ -14,7 +14,7 @@ export default function Contact({data}: {data: ContactSanity}) {
     const locale = useLocale()
 
     return (
-        <Layout>
+        <Layout seo={data.seo} title={t('contact')}>
             <div className={styles.contactContainer}>
                 <h1>{t('contact')}</h1>
                 <div className={styles.addressContainer}>

@@ -6,16 +6,14 @@ import styles from '../styles/notFound.module.scss'
 export default function NotFound() {
     const router = useRouter();
 
+    const title = router.locale === 'cs' ? `Tato stránka neexistuje!` : `Page Not Found!`
+
     return (
-        <Layout title={'Page Not Found'}>
+        <Layout title={title}>
             <section className={styles.notFoundContainer}>
-                <h2>
-                    {router.locale === 'cs' ?
-                        `Tato stránka neexistuje!`
-                        :
-                        `Page Not Found!`
-                    }
-                </h2>
+                <h1>
+                    {title}
+                </h1>
             </section>
         </Layout>
     );

@@ -6,7 +6,6 @@ import {QUERY_HOMEPAGE} from '@/api/homepage';
 import {Homepage as HomepageType} from '../api/homepage'
 import Link from 'next/link';
 import styles from '../styles/homepage.module.scss'
-import LocalizedDate from '@/components/utils/LocalizeDate';
 import localizedDate from '@/components/utils/LocalizeDate';
 import {useLocale} from '@/components/utils/useLocale';
 import localizedTime from '@/components/utils/LocalizeTime';
@@ -18,7 +17,11 @@ export default function Home({data}: {data: HomepageType}) {
     const t = useTranslations('Homepage');
 
     return (
-        <Layout cover={data.cover} description={data.description}>
+        <Layout
+            cover={data.cover}
+            description={data.description}
+            seo={data.seo}
+        >
             <div className={styles.homepageContainer}>
                 <h1>Program</h1>
                 <ul>

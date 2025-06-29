@@ -25,26 +25,26 @@ export async function getServerSideProps({ res }) {
     `)
 
     slugs.push(`
-        <loc>${baseUrl}projects</loc>
+        <loc>${baseUrl}/projects</loc>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
     `)
 
     slugs.push(`
-        <loc>${baseUrl}about</loc>
+        <loc>${baseUrl}/about</loc>
         <changefreq>monthly</changefreq>
         <priority>0.9</priority>
     `)
 
     slugs.push(`
-        <loc>${baseUrl}contact</loc>
+        <loc>${baseUrl}/contact</loc>
         <changefreq>monthly</changefreq>
         <priority>0.9</priority>
     `)
 
     const locations = [
         ...slugs,
-        ...urls.map((slug) => createXmlEntry(`${baseUrl}projects/${slug}`)),
+        ...urls.map((slug) => createXmlEntry(`${baseUrl}/projects/${slug}`)),
     ];
 
     const createSitemap = () => `<?xml version="1.0" encoding="UTF-8"?>

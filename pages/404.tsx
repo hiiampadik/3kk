@@ -3,6 +3,7 @@ import React from 'react';
 import {useRouter} from 'next/router';
 import {GetStaticPropsContext} from 'next';
 import styles from '../styles/notFound.module.scss'
+
 export default function NotFound() {
     const router = useRouter();
 

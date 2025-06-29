@@ -15,7 +15,6 @@
   }
 }
 
-
 .navigationContainer {
   display: flex;
   gap: 20px;
@@ -107,6 +106,7 @@
     .smallLink {
       @include mono;
 
+      background: $gray;
       text-decoration: none;
       border-radius: 30px;
       width: 40px;

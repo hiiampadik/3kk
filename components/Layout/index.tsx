@@ -7,6 +7,8 @@ import {classNames} from '@/components/utils/classNames';
 import {useRouter} from 'next/router';
 import {useLocale} from '@/components/utils/useLocale';
 import {LocalizedRichParagraph, LocalizedString, LocalizedText} from '@/api/sanity.types';
+import Loading from '@/components/Layout/Loading';
+import grid from '@/public/logos/grid.svg'
 
 export const WEBSITE_NAME_CZ = 'Divadlo 3+KK'
 export const WEBSITE_NAME_EN = 'Theatre 3+KK'
@@ -166,6 +168,7 @@ const Layout: FunctionComponent<PropsWithChildren<LayoutProps>> = (
             />
 
             <main>
+                <Loading/>
                 <Navigation cover={cover} description={description}/>
                 <div className={classNames([styles.content, loading ? styles.loading : styles.loaded])}>
                     {children}

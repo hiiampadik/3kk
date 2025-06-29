@@ -32,11 +32,11 @@ const Loading: FunctionComponent = () => {
 
     return (
         <>
-            {loading &&
-                <div className={styles.loadingContainer}>
-                    <img src={logo.src} className={styles.loading}/>
-                </div>
-            }
+            {/*{loading &&*/}
+            {/*    <div className={styles.loadingContainer}>*/}
+            {/*        <img src={logo.src} className={styles.loading}/>*/}
+            {/*    </div>*/}
+            {/*}*/}
 
                 <div className={classNames([styles.gridContainer, loading && styles.loading])}>
                     <div className={styles.inner1}>

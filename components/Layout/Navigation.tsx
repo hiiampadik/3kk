@@ -10,7 +10,6 @@ import {classNames} from '@/components/utils/classNames';
 import {useTranslations} from 'next-intl';
 import {useLocale} from '@/components/utils/useLocale';
 import logo from '@/public/logos/2.svg';
-import logoSimple from '@/public/logos/3.svg';
 import Figure from '@/components/Sanity/Figure';
 import BlockContent from '@/components/Sanity/BlockContent';
 import {LocalizedRichParagraph} from '@/api/sanity.types';
@@ -42,7 +41,7 @@ const Navigation: FunctionComponent<Props> = ({cover, description}) => {
     return (
         <>
                 <div className={styles.navigationContainer}>
-                    <div className={styles.navLeft}>
+                    <div className={classNames([styles.navLeft, cover && styles.coverHeight, router.asPath === '/' && styles.animation])}>
                         <nav className={styles.navLeftInner}>
                             <Link href={"/"} className={classNames([styles.link, styles.logo])}>
                                 <img src={logo.src} className={styles.logoComplex}/>

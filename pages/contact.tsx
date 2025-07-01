@@ -1,6 +1,6 @@
 import Layout from '../components/Layout';
 import React from 'react';
-import {sanityFetch} from '@/sanity/client';
+import {revalidateTime, sanityFetch} from '@/sanity/client';
 import {GetStaticPropsContext} from 'next';
 import {Contact as ContactSanity} from '../api/sanity.types'
 import {QUERY_CONTACT} from '@/api/queries';
@@ -34,6 +34,6 @@ export async function getStaticProps(context: GetStaticPropsContext) {
             data,
             messages: (await import(`../public/locales/${context.locale}.json`)).default,
         },
-        revalidate: 172800, // two days
+        revalidate: revalidateTime, // two days
     };
 }

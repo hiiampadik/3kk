@@ -1,6 +1,6 @@
 import React from "react";
 import {GetStaticPropsContext} from 'next';
-import client, {sanityFetch} from '@/sanity/client';
+import client, {revalidateTime, sanityFetch} from '@/sanity/client';
 import Layout from '@/components/Layout';
 import {Project as ProjectSanity} from '../../api/sanity.types'
 import {QUERY_ALL_PROJECTS_SLUGS, QUERY_PROJECT_DETAILS} from '@/api/queries';
@@ -75,6 +75,6 @@ export async function getStaticProps(context: GetStaticPropsContext) {
             data: data.project,
             messages: (await import(`../../public/locales/${context.locale}.json`)).default,
         },
-        revalidate: 172800, // two days
+        revalidate: revalidateTime, // two days
     };
 }

@@ -69,24 +69,22 @@
       @include mono;
     }
     display: flex;
-    gap: 50px;
+    gap: 100px;
     flex-wrap: wrap;
 
     @media (max-width: $breakpoint-lg-max) {
-      gap: 30px;
+      gap: 50px;
     }
 
     .logos {
       margin-top: 16px;
       display: flex;
       flex-wrap: wrap;
-      gap: 20px;
-      row-gap: 30px;
+      gap: 30px;
 
       img {
-        mix-blend-mode: multiply;
         max-width: 140px;
-        height: 27px;
+        height: 20px;
       }
     }
     }

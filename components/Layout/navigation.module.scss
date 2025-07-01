@@ -32,13 +32,11 @@
     &.coverHeight {
       @media (min-width: $breakpoint-md-min) {
         height: calc(100vh - 330px);
+        min-height: 500px;
       }
       @media (max-width: $breakpoint-sm-max) {
-        height: calc(100vh - 210px);
+        height: 80vw;
         flex: 1 1 auto;
-      }
-      @media (max-width: $breakpoint-xs-max) {
-        height: calc(100vh - 230px);
       }
     }
 
@@ -156,7 +154,7 @@
     position: relative;
     border-radius: 10px;
     overflow: hidden;
-    flex: 0 1 900px;
+    flex: 1 1 1400px;
     display: flex;
     @media (max-width: $breakpoint-md-max) {
       flex: 1 1 auto;
@@ -184,7 +182,7 @@
   .description {
     @include mono;
     align-self: flex-end;
-    flex: 1 0 250px;
+    flex: 1 0 200px;
     @media (max-width: $breakpoint-md-max) {
       align-self: flex-start;
       flex: 0 1 auto;

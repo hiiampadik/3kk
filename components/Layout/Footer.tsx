@@ -3,7 +3,7 @@ import styles from './footer.module.scss'
 import {useTranslations} from 'next-intl';
 import logo1 from '@/public/logos/kaznice.png'
 import logo2 from '@/public/logos/teren_logo_A.svg'
-import logo3 from '@/public/logos/andcrblack-7.jpg'
+import logo3 from '@/public/logos/andcrblack-7.png'
 import logo4 from '@/public/logos/bnd.svg'
 
 const Footer: FunctionComponent = () => {

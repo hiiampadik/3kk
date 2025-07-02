@@ -35,7 +35,10 @@
   text-decoration: none;
 
   .dateContainer{
-    flex: 0 0 250px;
+    flex: 0 0 230px;
+    @media (max-width: $breakpoint-md-max) {
+      flex: 0 0 150px;
+    }
     .date {
       @include headline;
       font-variant-numeric: lining-nums proportional-nums;
@@ -46,7 +49,9 @@
     }
   }
   .nameContainer{
-    flex: 1 0 auto;
+    @media (min-width: $breakpoint-md-min) {
+      flex: 0 1 600px;
+    }
     h2 {
       @include headline;
     }
@@ -71,8 +76,18 @@
 }
 
 .externalLinks {
+  flex: 0 0 500px;
+  justify-content: flex-end;
   display: flex;
   gap: 10px;
+  @media (max-width: $breakpoint-xl-max) {
+    flex: 0 0 185px;
+  }
+  @media (max-width: $breakpoint-xs-max) {
+    justify-content: flex-start;
+    flex: 0 0 auto;
+  }
+
   .tickets, .fb {
     @media (min-width: $breakpoint-xxl-min) {
       @include menuLinkBig

@@ -26,7 +26,7 @@ export default function About({data}: {data: AboutSanity}) {
                     <h2>{t('team')}</h2>
                     <div className={styles.teamList}>
                         {data.team?.map((member, index) => (
-                            <div key={index}>
+                            <div key={index} className={styles.member}>
                                 <div className={styles.cover}>
                                     {member.photo &&
                                         <Figure image={member.photo}/>

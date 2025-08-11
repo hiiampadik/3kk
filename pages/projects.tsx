@@ -36,7 +36,9 @@ export default function Projects({data}: {data: ProjectSanity[]}) {
                                   as={`/projects/${project.slug.current}`}
                                   key={project._id}>
                                 <div className={styles.cover}>
-                                    <Figure image={project.cover} />
+                                    {project.cover &&
+                                        <Figure image={project.cover} />
+                                    }
                                 </div>
                                 <h2>{project.title[locale]}</h2>
                                 <BlockContent blocks={project.description[locale]} />

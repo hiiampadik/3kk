@@ -111,7 +111,19 @@ export type Project = {
     role: LocalizedString
     _key: string
   }>
-  cover: {
+  cover?: {
+    asset?: {
+      _ref: string
+      _type: 'reference'
+      _weak?: boolean
+      [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
+    }
+    media?: unknown
+    hotspot?: SanityImageHotspot
+    crop?: SanityImageCrop
+    _type: 'image'
+  }
+  poster?: {
     asset?: {
       _ref: string
       _type: 'reference'

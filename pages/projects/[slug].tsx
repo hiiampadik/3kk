@@ -13,14 +13,14 @@ import {getImageDimensions} from '@sanity/asset-utils';
 export default function Project({data}: {data: ProjectSanity}) {
     const locale = useLocale()
     const builder = imageUrlBuilder(client);
-    const coverDimensions = data.cover.asset && getImageDimensions(data.cover.asset)
+    const coverDimensions = data.cover?.asset && getImageDimensions(data.cover.asset)
 
     return (
         <Layout
             title={data.title[locale]}
             cover={data.cover}
             seo={data.seo}
-            image={{
+            image={data.cover && {
                 url: builder.image(data.cover).auto("format").width(800).quality(60).url(),
                 height: coverDimensions?.height.toString() ?? '',
                 width: coverDimensions?.width.toString() ?? '',
@@ -41,9 +41,11 @@ export default function Project({data}: {data: ProjectSanity}) {
                         {/*<div className={styles.program}>*/}
                         {/*    TODO*/}
                         {/*</div>*/}
+                        {/*todo poster*/}
                         <div className={styles.abstract}>
                             <BlockContent blocks={data.abstract[locale]}/>
                         </div>
+                        {/*todo gallery*/}
                     </div>
 
                 </div>

@@ -2,6 +2,8 @@
 
 .homepageContainer {
   @include margin;
+  max-width: 1000px;
+  min-height: 300px;
   h1 {
     @include headline;
     position: sticky;
@@ -40,7 +42,8 @@
       flex: 0 0 150px;
     }
     .date {
-      @include headline;
+      @include headline2;
+      margin-bottom: 8px;
       font-variant-numeric: lining-nums proportional-nums;
 
     }
@@ -49,15 +52,13 @@
     }
   }
   .nameContainer{
-    @media (min-width: $breakpoint-md-min) {
-      flex: 0 1 600px;
-    }
     h2 {
-      @include headline;
+      @include headline2;
+      margin-bottom: 8px;
     }
     .description {
       @include mono;
-      max-width: 800px;
+      max-width: 500px;
     }
   }
 
@@ -76,26 +77,38 @@
 }
 
 .externalLinks {
-  flex: 0 0 500px;
+  flex: 0 0 200px;
   justify-content: flex-end;
   display: flex;
   gap: 10px;
-  @media (max-width: $breakpoint-xl-max) {
-    flex: 0 0 185px;
-  }
+
   @media (max-width: $breakpoint-xs-max) {
     justify-content: flex-start;
     flex: 0 0 auto;
   }
 
   .tickets, .fb {
-    @media (min-width: $breakpoint-xxl-min) {
-      @include menuLinkBig
+    @include outlinedLink;
+
+    align-self: flex-start;
+    height: 40px;
+
+    background-image: linear-gradient(90deg, $gray 25%, #E5FC54 50%, $gray 75%) !important;
+    background-size: 300px 100%;
+
+    background-position-x: -250px;
+
+    @media (hover: hover) {
+      &:hover {
+        @include underline;
+        background-position-x: 50px;
+      }
     }
-    @media (max-width: $breakpoint-xl-max) {
-      align-self: flex-start;
-      @include outlinedLink;
-      height: 40px;
-    }
+  }
+  .tickets {
+    transition: background-position 1s;
+  }
+  .fb {
+    transition: background-position 2s;
   }
 }

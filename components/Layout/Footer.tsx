@@ -6,6 +6,11 @@ import logo2 from '@/public/logos/teren_logo_A.svg'
 import logo3 from '@/public/logos/andcrblack-7.png'
 import logo4 from '@/public/logos/bnd.svg'
 
+import logo5 from '@/public/logos/MKCR.svg'
+import logo6 from '@/public/logos/Brno.png'
+import logo7 from '@/public/logos/JMK.png'
+import logo8 from '@/public/logos/SFK.svg'
+
 const Footer: FunctionComponent = () => {
 
     const t = useTranslations('Footer');
@@ -25,6 +30,29 @@ const Footer: FunctionComponent = () => {
 
             <div className={styles.rightContainer}>
                 <div>
+                    <p className={styles.sponsors}>
+                        {t('sponsorsBody')}
+                    </p>
+                    <p className={styles.sponsors}>
+                        {t('sponsors')}
+                    </p>
+                    <div className={styles.logos}>
+                        <img src={logo5.src}/>
+                        <img src={logo7.src}/>
+                        <img src={logo6.src}/>
+                        <img src={logo8.src}/>
+                    </div>
+                    <p className={styles.sponsors}>
+                        {t('partners')}
+                    </p>
+                    <div className={styles.logos}>
+                        <img src={logo1.src}/>
+                        <img src={logo2.src}/>
+                        <img src={logo3.src}/>
+                        <img src={logo4.src}/>
+                    </div>
+                </div>
+                <div>
                     <p>
                         Divadlo 3+kk z.s.<br/>
                         Nové sady 988/2<br/>
@@ -33,17 +61,6 @@ const Footer: FunctionComponent = () => {
                     <p>
                         IČO: 09537279
                     </p>
-                </div>
-                <div>
-                    <p>
-                        {t('partners')}
-                    </p>
-                    <div className={styles.logos}>
-                        <img src={logo1.src} />
-                        <img src={logo2.src} />
-                        <img src={logo3.src} />
-                        <img src={logo4.src} />
-                    </div>
                 </div>
             </div>
         </div>

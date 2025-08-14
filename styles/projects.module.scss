@@ -33,7 +33,8 @@
   .projectsList {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 10px;
+    row-gap: 30px;
+    column-gap: 10px;
     padding: 0;
     margin: 0;
     @media (max-width: $breakpoint-xs-max) {
@@ -55,17 +56,18 @@
 
       h2 {
         @include mono;
-        margin: 20px 0 0;
+        margin: 10px 0 0;
       }
       p {
         @include mono;
+        max-width: 400px;
       }
       .cover {
         flex: 1 1 auto;
         position: relative;
         border-radius: 10px;
         overflow: hidden;
-        height: 350px;
+        height: 300px;
         background: #E5FC54;
 
         img {

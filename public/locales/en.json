@@ -8,7 +8,9 @@
     },
 
     "Footer": {
-        "partners": "Partners"
+        "partners": "Partners",
+        "sponsors": "Sponsors",
+        "sponsorsBody": "The 3+kk Theatre operates with the financial support of the Statutory City of Brno."
     },
 
     "Homepage": {

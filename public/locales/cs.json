@@ -8,7 +8,9 @@
     },
 
     "Footer": {
-        "partners": "Partneři"
+        "partners": "Partneři",
+        "sponsors": "Sponzoři",
+        "sponsorsBody": "Divadlo 3+kk působí za finanční podpory Statutárního města Brna."
     },
 
     "Homepage": {

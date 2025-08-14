@@ -40,65 +40,72 @@ const Navigation: FunctionComponent<Props> = ({cover, description}) => {
 
     return (
         <>
-                <div className={styles.navigationContainer}>
-                    <div className={classNames([styles.navLeft, cover && styles.coverHeight, router.asPath === '/' && styles.animation])}>
-                        <nav className={styles.navLeftInner}>
-                            <Link href={"/"} className={classNames([styles.link, styles.logo])}>
-                                <img src={logo.src} className={styles.logoComplex}/>
-                            </Link>
-                            <Link
-                                href={"/projects"}
-                                className={classNames([styles.link, styles.link1])}
-                                prefetch={false}>
-                                <p>{t('repertoire')}</p>
-                            </Link>
-                            <div className={styles.navLeftLinkWrap}>
-                                <Link
-                                    href={"/about"}
-                                    className={classNames([styles.link, styles.link2])}
-                                    prefetch={false}
-                                >
-                                    <p>{t('about')}</p>
-                                </Link>
-                                <Link
-                                    href={"/contact"}
-                                    className={classNames([styles.link, styles.link3])}
-                                    prefetch={false}
-                                >
-                                    <p>{t('contact')}</p>
-                                </Link>
-                            </div>
-                        </nav>
+            <div className={classNames([styles.navLeft, router.asPath === '/' && styles.animation])}>
+                <nav className={styles.navLeftInner}>
+                    <Link href={"/"} className={classNames([styles.link, styles.logo])}>
+                        <img src={logo.src} className={styles.logoComplex}/>
+                    </Link>
+                    <Link
+                        href={"/projects"}
+                        className={classNames([styles.link, styles.link1])}
+                        prefetch={false}>
+                        <p>{t('repertoire')}</p>
+                    </Link>
+                    <div className={styles.navLeftLinkWrap}>
+                        <Link
+                            href={"/about"}
+                            className={classNames([styles.link, styles.link2])}
+                            prefetch={false}
+                        >
+                            <p>{t('about')}</p>
+                        </Link>
+                        <Link
+                            href={"/contact"}
+                            className={classNames([styles.link, styles.link3])}
+                            prefetch={false}
+                        >
+                            <p>{t('contact')}</p>
+                        </Link>
+                    </div>
+                    <Link
+                        href={router.asPath}
+                        locale={router.locale === "cs" ? "en" : "cs"}
+                        className={styles.language}
+                        prefetch={false}
+                    >
+                        <p>{router.locale === "cs" ? "En" : "Cz"}</p>
+                    </Link>
+                </nav>
 
-                        {cover &&
-                            <div className={styles.coverContainer}>
-                                <div className={styles.cover}>
-                                    <Figure image={cover} fullWidth={true}/>
-                                </div>
-                                {description &&
-                                    <div className={styles.description}>
-                                        <BlockContent blocks={description[locale]} />
-                                    </div>
-                                }
+                {cover &&
+                    <div className={styles.coverContainer}>
+                        <div className={styles.cover}>
+                            <Figure image={cover} fullWidth={true}/>
+                        </div>
+                        {description &&
+                            <div className={styles.description}>
+                                <BlockContent blocks={description[locale]} />
                             </div>
                         }
                     </div>
+                }
+            </div>
 
-                    <div className={styles.navRight}>
-                        <Link
-                            href={router.asPath}
-                            locale={router.locale === "cs" ? "en" : "cs"}
-                            className={classNames([styles.smallLink, styles.language])}
-                            prefetch={false}
-                        >
-                            <p>{router.locale === "cs" ? "En" : "Cz"}</p>
-                        </Link>
-                        <a href={"https://goout.net/cs/divadlo-3+kk/pzwidng/"}
-                           className={classNames([styles.smallLink, styles.tickets])}>
-                            <p>{t('tickets')}</p>
-                        </a>
-                    </div>
-                </div>
+            <div className={styles.navRight}>
+                <Link
+                    href={router.asPath}
+                    locale={router.locale === "cs" ? "en" : "cs"}
+                    className={classNames([styles.smallLink, styles.language])}
+                    prefetch={false}
+                >
+                    <p>{router.locale === "cs" ? "En" : "Cz"}</p>
+                </Link>
+                <a href={"https://goout.net/cs/divadlo-3+kk/pzwidng/"}
+                   className={classNames([styles.smallLink, styles.tickets])}>
+                    <p>{t('tickets')}</p>
+                </a>
+            </div>
+
             <Overlay handleClose={() => setShowOverlay(false)} isOpen={showOverlay} />
         </>
     );

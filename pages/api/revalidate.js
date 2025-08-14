@@ -16,25 +16,41 @@ export default async function handler(req, res) {
     try {
         const type = req.body['_type'];
 
-        let path = '';
-        let slug = ''
         switch(type){
             case 'projects':
-                slug = req.body.slug.current
+                const slug = req.body.slug.current
                 console.log(`===== Revalidating: ${type}, ${slug}`);
-                path = `projects/${slug}`;
+                await Promise.all([
+                    res.revalidate(`/en/projects/${slug}`),
+                    res.revalidate(`/cs/projects/${slug}`),
+                    res.revalidate(`/en/`),
+                    res.revalidate(`/cs/`)
+                ]);
+
                 break;
             case 'homepage':
                 console.log(`===== Revalidating: Homepage`);
-                path = '';
+                await Promise.all([
+                    res.revalidate(`/en/`),
+                    res.revalidate(`/cs/`)
+                ]);
+
                 break
             case 'about':
                 console.log(`===== Revalidating: About`);
-                path = 'about';
+                await Promise.all([
+                    res.revalidate(`/en/about`),
+                    res.revalidate(`/cs/about`)
+                ]);
+
                 break
             case 'contact':
                 console.log(`===== Revalidating: Contact`);
-                path = 'contact';
+                await Promise.all([
+                    res.revalidate(`/en/contact`),
+                    res.revalidate(`/cs/contact`)
+                ]);
+
                 break
             default:
                 console.log(`===== Wrong type ${type}`);
@@ -42,10 +58,6 @@ export default async function handler(req, res) {
                 return
         }
 
-        await Promise.all([
-             res.revalidate(`/en/${path}`),
-             res.revalidate(`/cs/${path}`)
-        ]);
 
         return res.json({ revalidated: true });
 

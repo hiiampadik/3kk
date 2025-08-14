@@ -1,7 +1,6 @@
 @import '../../styles/variables';
 
 .content {
-  @include marginVertical;
   animation: appear 0.7s forwards cubic-bezier(.27,.64,.67,.98);
   transform: translateY(30px);
 }
@@ -15,95 +14,27 @@
   }
 }
 
-.navigationContainer {
-  display: flex;
-  gap: 20px;
-  justify-content: space-between;
+.navLeft {
   @include margin;
-  margin-bottom: 10px !important;
-  @media (max-width: $breakpoint-sm-max) {
-    gap: 6px;
-  }
+  display: flex;
+  flex-direction: column;
 
-  .navLeft {
+  .navLeftInner {
     display: flex;
-    flex-direction: column;
-
-    &.coverHeight {
-      @media (min-width: $breakpoint-md-min) {
-        height: calc(100vh - 330px);
-        min-height: 500px;
-      }
-      @media (max-width: $breakpoint-sm-max) {
-        height: 80vw;
-        flex: 1 1 auto;
-      }
-    }
-
-    .navLeftInner {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      @media (max-width: $breakpoint-sm-max) {
-        gap: 6px;
-        max-width: 500px;
-        padding-right: 45px;
-      }
-    }
-
-
-    .navLeftLinkWrap {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      @media (max-width: $breakpoint-sm-max) {
-        gap: 6px;
-      }
-    }
-    .link {
-      @include menuLinkBig;
-    }
-    .logo {
-      align-items: stretch;
-      img {
-        width: 6em;
-      }
-    }
-    .link1 {
-      border-radius: 60px;
-      background: #E5FC54;
-      animation-delay: 0.3s;
-    }
-    .link2 {
-      background: #C294FF;
-      animation-delay: 0.5s;
-    }
-    .link3 {
-      border-radius: 60px;
-      background: #32FE6B;
-      animation-delay: 0.6s;
-    }
-
-  }
-
-  .navRight {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-    min-height: 170px;
-
-    @media (max-width: $breakpoint-md-max) {
-      position: absolute;
-      right: 30px;
-    }
+    gap: 10px;
+    flex-wrap: wrap;
+    padding-right: 50px;
     @media (max-width: $breakpoint-sm-max) {
-      position: absolute;
-      right: 15px;
+      gap: 6px;
     }
 
-    .smallLink {
-      @include mono;
+    .language{
+      position: absolute;
+      z-index: 100;
+      top: 20px;
+      right: 20px;
 
+      @include mono;
       background: $gray;
       text-decoration: none;
       border-radius: 30px;
@@ -112,53 +43,162 @@
       display: flex;
       align-items: center;
       justify-content: center;
-
-      &.language{
-        height: 40px;
-        transition: 0.2s;
-        @media (hover: hover) {
-          &:hover {
-            transform: rotate(90deg);
-          }
+      height: 40px;
+      transition: 0.2s;
+      @media (hover: hover) {
+        &:hover {
+          transform: rotate(90deg);
         }
       }
-      &.tickets{
-        writing-mode: vertical-rl;
-        text-orientation: mixed;
-        padding: 18px 0;
-        @media (max-width: $breakpoint-md-max) {
-          display: none;
+      @media (min-width: $breakpoint-md-min) {
+        display: none;
+      }
+      @media (max-width: $breakpoint-xs-max) {
+        top: 15px;
+        right: 15px;
+
+      }
+    }
+  }
+
+
+  .navLeftLinkWrap {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    @media (max-width: $breakpoint-sm-max) {
+      gap: 6px;
+    }
+  }
+  .link {
+    @include menuLinkBig;
+  }
+  .logo {
+    align-items: stretch;
+    img {
+      width: 6em;
+    }
+  }
+  .link1 {
+    border-radius: 60px;
+    background: #E5FC54;
+    animation-delay: 0.3s;
+  }
+  .link2 {
+    background: #C294FF;
+    animation-delay: 0.5s;
+  }
+  .link3 {
+    border-radius: 60px;
+    background: #32FE6B;
+    animation-delay: 0.6s;
+  }
+
+}
+
+.navRight {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-height: 170px;
+  position: fixed;
+  z-index: 200;
+  top: 30px;
+  right: 30px;
+
+  .smallLink {
+    @include mono;
+
+    background: $gray;
+    text-decoration: none;
+    border-radius: 30px;
+    width: 40px;
+    border: 1px black solid;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &.language{
+      height: 40px;
+      transition: 0.2s;
+      @media (hover: hover) {
+        &:hover {
+          transform: rotate(90deg);
         }
-        @media (hover: hover) {
-          &:hover {
-            @include underline
-          }
+      }
+    }
+    &.tickets{
+      writing-mode: vertical-rl;
+      text-orientation: mixed;
+      padding: 18px 0;
+      background-image: linear-gradient(0deg, $gray 25%, #E5FC54 45%, $gray 75%);
+      animation: linkAnimation 6s linear infinite;
+      background-size: 100% 200%;
+      @media (max-width: $breakpoint-md-max) {
+        display: none;
+      }
+      @media (hover: hover) {
+        &:hover {
+          @include underline
         }
       }
     }
   }
+
+  @media (max-width: $breakpoint-sm-max) {
+    display: none;
+  }
+}
+
+@keyframes linkAnimation {
+  0% {
+    background-position-y: -50%;
+  }
+  50% {
+    background-position-y: 150%;
+  }
+  100% {
+    background-position-y: 150%;
+  }
+}
+
+.link1 {
+  border-radius: 60px;
+  background: #E5FC54;
+  animation-delay: 0.3s;
+}
+.link2 {
+  background: #C294FF;
+  animation-delay: 0.5s;
+}
+.link3 {
+  border-radius: 60px;
+  background: #32FE6B;
+  animation-delay: 0.6s;
 }
 
 .coverContainer {
+  max-width: 1000px;
+  margin-right: 50px;
+  height: 700px;
+  max-height: calc(100vh - 417px);
   margin-top: 10px;
   display: flex;
-  align-items: stretch;
-  gap: 20px;
-  flex: 1 1 auto;
+  flex-direction: column;
+  gap: 10px;
 
   @media (max-width: $breakpoint-sm-max) {
     margin-top: 6px;
+    margin-right: 0;
     gap: 10px;
   }
   .cover {
     position: relative;
     border-radius: 10px;
     overflow: hidden;
-    flex: 1 1 1400px;
     display: flex;
-    @media (max-width: $breakpoint-md-max) {
-      flex: 1 1 auto;
-    }
+    height: 100%;
+    background: #E5FC54;
 
     img {
       width: 100%;
@@ -181,17 +221,7 @@
 
   .description {
     @include mono;
-    align-self: flex-end;
-    flex: 1 0 200px;
-    @media (max-width: $breakpoint-md-max) {
-      align-self: flex-start;
-      flex: 0 1 auto;
-    }
-  }
-
-
-  @media (max-width: $breakpoint-md-max) {
-    flex-direction: column;
+    flex: 0 1 auto;
   }
 }
 

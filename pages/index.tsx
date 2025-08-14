@@ -16,6 +16,8 @@ export default function Home({data}: {data: HomepageType}) {
     const locale = useLocale()
     const t = useTranslations('Homepage');
 
+    const program = data.program?.sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime()) ?? []
+
     return (
         <Layout
             cover={data.cover}
@@ -25,7 +27,7 @@ export default function Home({data}: {data: HomepageType}) {
             <div className={styles.homepageContainer}>
                 <h1>Program</h1>
                 <ul>
-                    {data.program?.map(event => (
+                    {program.map(event => (
                         <li key={event._key}>
                             <Link href={`/projects/[slug]`}
                                   as={`/projects/${event.project.slug.current}`}

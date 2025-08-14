@@ -76,15 +76,21 @@
       gap: 50px;
     }
 
+    .sponsors {
+      max-width: 340px;
+      margin-bottom: 16px;
+    }
+
     .logos {
-      margin-top: 16px;
+      margin: 16px 0 36px;
       display: flex;
       flex-wrap: wrap;
       gap: 30px;
 
       img {
-        max-width: 140px;
-        height: 20px;
+        max-width: 120px;
+        height: 23px;
+        object-fit: contain;
       }
     }
     }

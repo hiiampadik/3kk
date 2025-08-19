@@ -32,6 +32,16 @@ $gray: #F8F8F8;
   }
 }
 
+@mixin paddingHorizontal {
+  padding: 0 30px;
+  @media (max-width: $breakpoint-sm-max) {
+    padding: 0 20px;
+  }
+  @media (max-width: $breakpoint-xs-max) {
+    padding: 0 15px;
+  }
+}
+
 @mixin marginVertical {
   margin: 40px 0;
   @media (max-width: $breakpoint-sm-max) {
@@ -69,6 +79,17 @@ $gray: #F8F8F8;
 
   @media (max-width: $breakpoint-md-max) {
     font-size: 28px;
+  }
+}
+
+@mixin headline3 {
+  font-family: neue-haas-unica, 'Helvetica', 'Arial', sans-serif;
+  font-weight: 400;
+  font-size: 28px;
+  line-height: 1.15em;
+
+  @media (max-width: $breakpoint-md-max) {
+    font-size: 22px;
   }
 }
 

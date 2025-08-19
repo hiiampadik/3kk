@@ -40,7 +40,7 @@
     }
 
     h3 {
-      margin: 20px 0 0;
+      margin: 10px 0 0;
       @include mono;
     }
 
@@ -55,8 +55,7 @@
     }
 
     .cover {
-      min-height: 200px;
-      flex: 1 1 auto;
+      height: 200px;
       position: relative;
       border-radius: 10px;
       overflow: hidden;

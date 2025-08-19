@@ -1,6 +1,6 @@
 {
     "Navigation": {
-        "repertoire": "Repertoire",
+        "projects": "Projects",
         "about": "About",
         "contact": "Contact",
         "tickets": "Tickets",
@@ -18,8 +18,8 @@
     },
 
 
-    "Repertoire": {
-        "repertoire": "Repertoire",
+    "Projects": {
+        "projects": "Projects",
         "archived": "Archive",
         "ongoing": "Ongoing",
         "planned": "Planned"
@@ -32,6 +32,7 @@
 
     "Contact": {
         "contact": "Contact",
-        "address": "Address"
+        "address": "Address",
+        "billing": "Billing Information"
     }
 }

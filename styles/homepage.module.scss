@@ -6,7 +6,28 @@
   min-height: 300px;
   h1 {
     @include headline;
-    position: sticky;
+    margin-bottom: 20px;
+  }
+  .monthHeader{
+    position: relative;
+    padding: 2px 0 2px 22px;
+    @include mono;
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+    text-transform: uppercase;
+  }
+  .monthHeader::before {
+    content: '';
+    position: absolute;
+    left: 3px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 14px;
+    height: 14px;
+    background-color: #32FE6B;
+    //background-color: #E5FC54;
+    //background-color: black;
+    border-radius: 50%;
   }
   ul {
     margin: 20px 0 0;
@@ -22,6 +43,9 @@
     display: flex;
     justify-content: space-between;
     gap: 10px;
+    &:last-of-type{
+      border: none;
+    }
 
     @media (max-width: $breakpoint-xs-max) {
       flex-direction: column;

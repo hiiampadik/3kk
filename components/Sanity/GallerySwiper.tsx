@@ -14,11 +14,26 @@ import {internalGroqTypeReferenceTo, SanityImageCrop, SanityImageHotspot} from '
 
 
 interface GalleryProps {
-  readonly images: any[]
+  readonly gallery: Array<{
+      image: {
+          asset?: {
+              _ref: string
+              _type: 'reference'
+              _weak?: boolean
+              [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
+          }
+          media?: unknown
+          hotspot?: SanityImageHotspot
+          crop?: SanityImageCrop
+          _type: 'image'
+      }
+      alt?: string
+      _key: string
+  }>
 }
 
 
-const GallerySwiper: FunctionComponent<GalleryProps> = ({images}) => {
+const GallerySwiper: FunctionComponent<GalleryProps> = ({gallery}) => {
 
     const isDragging = useRef(false);
 
@@ -48,9 +63,9 @@ const GallerySwiper: FunctionComponent<GalleryProps> = ({images}) => {
                 onTouchMove={handleTouchMove}
                 onTouchEnd={handleTouchEnd}
             >
-                {images.map((image, index) => (
-                    <SwiperSlide key={image.Id} className={styles.swiperSlide}>
-                        <GallerySlide image={image} galleryImage={true}/>
+                {gallery.map((image, index) => (
+                    <SwiperSlide key={image._key} className={styles.swiperSlide}>
+                        <GallerySlide image={image.image} galleryImage={true}/>
                     </SwiperSlide>
                 ))}
             </Swiper>

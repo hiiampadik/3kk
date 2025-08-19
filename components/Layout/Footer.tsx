@@ -31,9 +31,6 @@ const Footer: FunctionComponent = () => {
             <div className={styles.rightContainer}>
                 <div>
                     <p className={styles.sponsors}>
-                        {t('sponsorsBody')}
-                    </p>
-                    <p className={styles.sponsors}>
                         {t('sponsors')}
                     </p>
                     <div className={styles.logos}>
@@ -42,6 +39,8 @@ const Footer: FunctionComponent = () => {
                         <img src={logo6.src}/>
                         <img src={logo8.src}/>
                     </div>
+                </div>
+                <div>
                     <p className={styles.sponsors}>
                         {t('partners')}
                     </p>
@@ -52,16 +51,9 @@ const Footer: FunctionComponent = () => {
                         <img src={logo4.src}/>
                     </div>
                 </div>
-                <div>
-                    <p>
-                        Divadlo 3+kk z.s.<br/>
-                        Nové sady 988/2<br/>
-                        602 00 Brno
-                    </p>
-                    <p>
-                        IČO: 09537279
-                    </p>
-                </div>
+                <p className={styles.sponsors}>
+                    {t('sponsorsBody')}
+                </p>
             </div>
         </div>
     );

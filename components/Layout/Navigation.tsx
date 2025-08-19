@@ -49,7 +49,7 @@ const Navigation: FunctionComponent<Props> = ({cover, description}) => {
                         href={"/projects"}
                         className={classNames([styles.link, styles.link1])}
                         prefetch={false}>
-                        <p>{t('repertoire')}</p>
+                        <p>{t('projects')}</p>
                     </Link>
                     <div className={styles.navLeftLinkWrap}>
                         <Link

@@ -14,11 +14,16 @@
 
   .addressContainer {
     @include marginVertical;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
     p {
       @include mono;
+    }
+    h2 {
+      @include mono;
+      text-transform: uppercase;
+      margin: 0 0 1rem;
     }
     @media (max-width: $breakpoint-xs-max) {
       grid-template-columns: 1fr;

@@ -38,5 +38,21 @@
       @include mono;
     }
   }
+}
 
+.galleryContainer{
+
+  overflow: hidden;
+  .swiperSlide {
+    position: relative;
+  }
+  img {
+    position: relative;
+    border-radius: 10px;
+  }
+}
+
+.galleryContainer > div {
+  width: 100%;
+  @include paddingHorizontal;
 }

@@ -9,6 +9,7 @@ import {useLocale} from '@/components/utils/useLocale';
 import BlockContent from '@/components/Sanity/BlockContent';
 import imageUrlBuilder from '@sanity/image-url';
 import {getImageDimensions} from '@sanity/asset-utils';
+import GallerySwiper from '@/components/Sanity/GallerySwiper';
 
 export default function Project({data}: {data: ProjectSanity}) {
     const locale = useLocale()
@@ -45,11 +46,16 @@ export default function Project({data}: {data: ProjectSanity}) {
                         <div className={styles.abstract}>
                             <BlockContent blocks={data.abstract[locale]}/>
                         </div>
-                        {/*todo gallery*/}
                     </div>
-
                 </div>
+
+
             </div>
+            {data.gallery &&
+                <div className={styles.galleryContainer}>
+                    <GallerySwiper gallery={data.gallery}></GallerySwiper>
+                </div>
+            }
 
         </Layout>
     )

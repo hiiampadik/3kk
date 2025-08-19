@@ -55,8 +55,8 @@
 
 
       h2 {
-        @include mono;
-        margin: 10px 0 0;
+        @include headline3;
+        margin: 10px 0 5px;
       }
       p {
         @include mono;
@@ -68,13 +68,26 @@
         border-radius: 10px;
         overflow: hidden;
         height: 300px;
-        background: #E5FC54;
+        background: darkgrey;
+        transition: background 0.3s ease-in-out;
 
         img {
           width: 100%;
           height: 100%;
           object-fit: cover;
           display: block;
+          transition: transform 0.3s ease-in-out, filter 0.3s ease-in-out;
+          filter: grayscale(100%) contrast(110%);
+        }
+
+        @media (hover: hover) {
+          &:hover {
+            img {
+                transform: scale(1.03);
+              filter: grayscale(0%) contrast(100%);
+            }
+            background: #E5FC54;
+          }
         }
       }
       .cover::after {

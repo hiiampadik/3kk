@@ -18,8 +18,28 @@ export default function Contact({data}: {data: ContactSanity}) {
             <div className={styles.contactContainer}>
                 <h1>{t('contact')}</h1>
                 <div className={styles.addressContainer}>
-                    <BlockContent blocks={data.contacts[locale]}/>
-                    <BlockContent blocks={data.address[locale]}/>
+                    <div>
+                        <BlockContent blocks={data.contacts[locale]}/>
+                    </div>
+
+                    <div>
+                        <h2>
+                            {t('address')}
+                        </h2>
+                        <BlockContent blocks={data.address[locale]}/>
+                    </div>
+
+                    <div>
+                        <h2>
+                            {t('billing')}
+                        </h2>
+                        <p>
+                            Divadlo 3+kk z.s.<br/>
+                            Nové sady 988/2<br/>
+                            602 00 Brno<br/>
+                            IČO: 09537279
+                        </p>
+                    </div>
                 </div>
             </div>
         </Layout>

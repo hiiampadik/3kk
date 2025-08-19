@@ -23,40 +23,6 @@
   }
 }
 
-.gridContainer {
-  pointer-events: none;
-  position: fixed;
-  z-index: -10;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  padding: 6px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-
-  .inner1, .inner2, .inner3 {
-    display: flex;
-    justify-content: space-between;
-  }
-
-  @media (max-width: 350px) {
-    display: none;
-  }
-  @media (max-width: $breakpoint-sm-max) {
-    padding: 28px;
-    .inner2 {
-      display: none;
-    }
-  }
-
-  img {
-    height: 15px;
-    width: 15px;
-  }
-}
-
 
 
 

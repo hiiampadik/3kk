@@ -1,6 +1,6 @@
 {
     "Navigation": {
-        "repertoire": "Repertoár",
+        "projects": "Projekty",
         "about": "O Divadle",
         "contact": "Kontakt",
         "tickets": "Vstupenky",
@@ -17,8 +17,8 @@
         "tickets": "Vstupenky"
     },
 
-    "Repertoire": {
-        "repertoire": "Repertoár",
+    "Projects": {
+        "projects": "Projekty",
         "archived": "Archiv",
         "ongoing": "Aktuální",
         "planned": "Připravujeme"
@@ -31,6 +31,7 @@
 
     "Contact": {
         "contact": "Kontakt",
-        "address": "Adresa"
+        "address": "Adresa",
+        "billing": "Fakturační údaje"
     }
 }

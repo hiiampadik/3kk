@@ -16,9 +16,29 @@ program[]{
         title,
         slug,
         description,
+        cover,
     }
   }
 }`
+
+export type HomepageProject = {
+    _id: string
+    title: LocalizedString
+    slug: Slug
+    description: LocalizedRichParagraph
+    cover?: {
+        asset?: {
+            _ref: string
+            _type: 'reference'
+            _weak?: boolean
+            [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
+        }
+        media?: unknown
+        hotspot?: SanityImageHotspot
+        crop?: SanityImageCrop
+        _type: 'image'
+    }
+}
 
 export type Homepage = {
     _id: string
@@ -40,12 +60,7 @@ export type Homepage = {
     }
     description: LocalizedRichParagraph
     program?: Array<{
-        project: {
-            _id: string
-            title: LocalizedString
-            slug: Slug
-            description: LocalizedRichParagraph
-        }
+        project: HomepageProject
         date: string
         location: string
         ticket?: string

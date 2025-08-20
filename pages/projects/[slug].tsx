@@ -30,14 +30,16 @@ export default function Project({data}: {data: ProjectSanity}) {
             <div className={styles.projectContainer}>
                 <h1>{data.title[locale]}</h1>
                 <div className={styles.projectDetail}>
-                    <div className={styles.team}>
-                        {data.team?.map(member => (
-                            <div className={styles.member}>
-                                <p className={styles.role}>{member.role[locale]}{':'}</p>
-                                <p className={styles.name}>{member.name}</p>
-                            </div>
-                        ))}
-                    </div>
+                    {data.team && data.team.length > 0 &&
+                        <div className={styles.team}>
+                            {data.team.map(member => (
+                                <div className={styles.member}>
+                                    <p className={styles.role}>{member.role[locale]}{':'}</p>
+                                    <p className={styles.name}>{member.name}</p>
+                                </div>
+                            ))}
+                        </div>
+                    }
                     <div>
                         {/*<div className={styles.program}>*/}
                         {/*    TODO*/}

@@ -101,6 +101,7 @@ export type Project = {
   _updatedAt: string
   _rev: string
   title: LocalizedString
+  hideInRepertoire?: boolean
   slug: Slug
   status: 'planned' | 'ongoing' | 'archived'
   premiere: string

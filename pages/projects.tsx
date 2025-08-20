@@ -18,7 +18,7 @@ export default function Projects({data}: {data: ProjectSanity[]}) {
 
     const projects = useMemo(() => {
         return data
-            .filter(project => project.status === filter)
+            .filter(project => project.status === filter && !project.hideInRepertoire)
             .sort((a, b) => new Date(b.premiere).getTime() - new Date(a.premiere).getTime());
     }, [filter])
 

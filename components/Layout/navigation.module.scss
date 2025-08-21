@@ -15,8 +15,12 @@
 }
 
 .navWithCover {
-  height: calc(100vh - 245px);
+  height: calc(100vh - 130px);
   min-height: 400px;
+
+  @media (max-width: $breakpoint-sm-max) {
+    height: calc(100vh - 230px);
+  }
 }
 
 .navWrapper {
@@ -43,8 +47,12 @@
     gap: 10px;
     flex-wrap: wrap;
     flex: 1 1 auto;
-    @media (max-width: $breakpoint-md-max) {
+    @media (max-width: $breakpoint-sm-max) {
       gap: 6px;
+    }
+    @media (max-width: $breakpoint-xs-max) {
+      flex-direction: column;
+      align-items: flex-start;
     }
   }
 
